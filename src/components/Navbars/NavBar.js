@@ -2,7 +2,6 @@ import logo from "assets/images/logo.png"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-<<<<<<< HEAD
 function NavBar() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -11,22 +10,22 @@ function NavBar() {
     };
 
     return (
-        <nav id="navbar">
-            <div id="sm-navbar">
-                <div id="logo-holder">
-                    <img src={logo} alt="ShyLittleI" className="h-8 w-8" />
-                </div>
-                <div id="menu">
-                    <div id="tryit_button">
-                        <Link to="/demo" className="btn btn--stripe">Try it live!</Link>
+        <nav className="absolute z-10 text-black-pearl-50 h-32 text-2xl w-full">
+            <div className="flex justify-between items-center h-full">
+                <div className="ml-8 flex items-center justify-center h-3/4 gap-6">
+                    <div className="h-full flex justify-center items-center">
+                        <img src={logo} alt="ShyLittleI" className="max-h-full w-full" />
                     </div>
-                    <Link id="link" to="/more">Predict</Link>
-                    <Link id="link" to="/about">Statistics</Link>
-                    <Link id="link" to="/login">Login</Link>
-                    <Link id="link" to="/login">Contact</Link>
+                    <h1 className="text-3xl font-bold">Artificial Inteligence</h1>
                 </div>
-                <div id="toogle_menu_div">
-                    <button id="toogle_menu_button" type="button" onClick={toggleMobileMenu} aria-controls="mobile-menu" aria-expanded={isMobileMenuOpen}>
+                <div className="hidden lg:flex gap-8 mr-8">
+                    <Link id="link" to="/more" className="hover:bg-black-pearl-500 p-4 rounded-sm">Predict</Link>
+                    <Link id="link" to="/about" className="hover:bg-black-pearl-500 p-4 rounded-sm">Statistics</Link>
+                    <Link id="link" to="/login" className="hover:bg-black-pearl-500 p-4 rounded-sm">Login</Link>
+                    <Link id="link" to="/login" className="hover:bg-black-pearl-500 p-4 rounded-sm">Contact</Link>
+                </div>
+                <div className="block mr-8 lg:hidden">
+                    <button type="button" onClick={toggleMobileMenu} aria-controls="mobile-menu" aria-expanded={isMobileMenuOpen}>
                         {isMobileMenuOpen ? (
                             <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -40,28 +39,13 @@ function NavBar() {
                 </div>
             </div>
 
-            <div id="mobile-menu" className={isMobileMenuOpen ? "block" : "hidden"}>
-                <div id="mobile-menu-content">
+            <div className={isMobileMenuOpen ? "block" : "hidden"}>
+                <div>
                     <Link id="link" to="/more">Predict</Link>
                     <Link id="link" to="/about">Statistics</Link>
                     <Link id="link" to="/login">Login</Link>
                     <Link id="link" to="/login">Contact</Link>
                 </div>
-=======
-function NavBar(){
-
-    return(<nav id="navbar">
-        <div className="nav-container">
-            <div className="logo-container"><img id="logo" src={logo}></img>
-            </div>
-            <div className="nav-buttons">
-                <ul id = "nav-buttons-list">
-                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Predict</a></il>
-                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Statistics</a></il>
-                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Graphics</a></il>
-                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Contact</a></il>
-                </ul>
->>>>>>> a331a1b2aaa033fed092b70144d386f9d3286cf7
             </div>
 
         </nav >

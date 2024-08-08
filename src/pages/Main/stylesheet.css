@@ -7,63 +7,7 @@ body,html {
     font-family: 'Jura', sans-serif;
 }
 
-#nav-bar{
-    width: 100%;
-    position:fixed;
-}
-
-.logo-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#logo{
-    width: 80px;
-    height: 50px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 h1{margin:0;}
-
-.nav-container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap:55%;
-    background-color: rgb(1, 20, 36);
-}
-
-#nav-buttons-list{
-display: flex;
-gap: 15px;
-
-}
-
-.nav-buttons{
-    display: flex;
-}
-
-.nav-button{
-    display: flex;
-    border-radius: 20px;
-    padding: 13px;
-    transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-.nav-button:hover{
-    background-color: rgb(0, 150, 170);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-link{
-    text-decoration: none;
-    color: white;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-}
 
 #hero-section{
     position: relative;
