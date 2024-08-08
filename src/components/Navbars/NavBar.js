@@ -20,8 +20,8 @@ function NavBar() {
                 </div>
                 <div className="hidden lg:flex gap-8 mr-8">
                     <Link to="/wayared?menu=doc" className="hover:bg-black-pearl-500 p-4 rounded-sm">Documentation</Link>
-                    <Link to="/wayared?menu=models" className="hover:bg-black-pearl-500 p-4 rounded-sm">Models</Link>
-                    <Link to="/wayared?menu=results" className="hover:bg-black-pearl-500 p-4 rounded-sm">Analytical Results</Link>
+                    <Link to="/wayared?menu=model" className="hover:bg-black-pearl-500 p-4 rounded-sm">Models</Link>
+                    <Link to="/wayared?menu=result" className="hover:bg-black-pearl-500 p-4 rounded-sm">Analytical Results</Link>
                     <Link to="/wayared?menu=contact" className="hover:bg-black-pearl-500 p-4 rounded-sm">Contact us</Link>
                 </div>
                 <div className="block mr-8 lg:hidden">
