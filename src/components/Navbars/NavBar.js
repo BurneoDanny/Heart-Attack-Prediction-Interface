@@ -16,13 +16,13 @@ function NavBar() {
                     <div className="h-full flex justify-center items-center">
                         <img src={logo} alt="ShyLittleI" className="max-h-full w-full" />
                     </div>
-                    <h1 className="text-3xl font-bold">Artificial Inteligence</h1>
+                    <h1 className="text-3xl font-bold">Wayared Health Care</h1>
                 </div>
                 <div className="hidden lg:flex gap-8 mr-8">
-                    <Link id="link" to="/more" className="hover:bg-black-pearl-500 p-4 rounded-sm">Predict</Link>
-                    <Link id="link" to="/about" className="hover:bg-black-pearl-500 p-4 rounded-sm">Statistics</Link>
-                    <Link id="link" to="/login" className="hover:bg-black-pearl-500 p-4 rounded-sm">Login</Link>
-                    <Link id="link" to="/login" className="hover:bg-black-pearl-500 p-4 rounded-sm">Contact</Link>
+                    <Link to="/wayared?menu=doc" className="hover:bg-black-pearl-500 p-4 rounded-sm">Documentation</Link>
+                    <Link to="/wayared?menu=models" className="hover:bg-black-pearl-500 p-4 rounded-sm">Models</Link>
+                    <Link to="/wayared?menu=results" className="hover:bg-black-pearl-500 p-4 rounded-sm">Analytical Results</Link>
+                    <Link to="/wayared?menu=contact" className="hover:bg-black-pearl-500 p-4 rounded-sm">Contact us</Link>
                 </div>
                 <div className="block mr-8 lg:hidden">
                     <button type="button" onClick={toggleMobileMenu} aria-controls="mobile-menu" aria-expanded={isMobileMenuOpen}>

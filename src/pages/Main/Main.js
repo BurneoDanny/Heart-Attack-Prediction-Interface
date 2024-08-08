@@ -1,15 +1,15 @@
-import HeroSection from "./More/HeroSection";
+import Masthead from "./Masthead/Masthead";
 import Prediction from "./More/Prediction";
-import Details from "./More/Details";
 import NavBar from "components/Navbars/NavBar";
 import "./stylesheet.css"
+import Footer from "./Footer/Footer";
 export default function Main() {
     return (
         <main>
             <NavBar />
-            <HeroSection />
+            <Masthead />
             <Prediction />
-            <Details />
+            <Footer />
         </main>
     );
 }
