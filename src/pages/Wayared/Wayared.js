@@ -10,6 +10,10 @@ import { ReactComponent as ModelIcon } from "assets/svgs/model.svg";
 import { ReactComponent as ContactIcon } from "assets/svgs/contact.svg";
 import { ReactComponent as ResultIcon } from "assets/svgs/result.svg";
 import Documentation from "./Documentation/Documentation";
+import Analysis from "./Analysis/Analysis";
+import Models from "./Models/Models";
+import Contact from "./Contact/Contact";
+import Prediction from "pages/Main/More/Prediction";
 
 export default function Wayared() {
     const [isPredictMenuOpen, setPredictMenuOpen] = useState(false);
@@ -54,41 +58,6 @@ export default function Wayared() {
     const toogleMenu = (menu) => {
         navigate(`/wayared?menu=${menu}`);
     }
-
-    const predictContent = (
-        <div>
-            <h1>Predict Menu</h1>
-            <p>This is the content for the Predict menu.</p>
-        </div>
-    );
-
-    const docContent = (
-        <div>
-            <h1>Documentation Menu</h1>
-            <p>This is the content for the Documentation menu.</p>
-        </div>
-    );
-
-    const modelContent = (
-        <div>
-            <h1>Models Menu</h1>
-            <p>This is the content for the Models menu.</p>
-        </div>
-    );
-
-    const resultContent = (
-        <div>
-            <h1>Results Menu</h1>
-            <p>This is the content for the Results menu.</p>
-        </div>
-    );
-
-    const contactContent = (
-        <div>
-            <h1>Contact Us Menu</h1>
-            <p>This is the content for the Contact Us menu.</p>
-        </div>
-    );
 
     return (
         <div className="flex" id="wayared">
@@ -139,11 +108,11 @@ export default function Wayared() {
                 </div>
             </aside>
             <div className="content">
-                {isPredictMenuOpen && predictContent}
+                {isPredictMenuOpen && <Prediction />}
                 {isDocMenuOpen && <Documentation />}
-                {isModelMenuOpen && modelContent}
-                {isResultMenuOpen && resultContent}
-                {isContactMenuOpen && contactContent}
+                {isModelMenuOpen && <Models />}
+                {isResultMenuOpen && <Analysis />}
+                {isContactMenuOpen && <Contact />}
             </div>
         </div>
     );
