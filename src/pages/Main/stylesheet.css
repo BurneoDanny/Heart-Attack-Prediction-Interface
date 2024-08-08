@@ -107,8 +107,8 @@ height: 100%;
 
 .row{
     display: flex;
-    width: 100%;
-    gap: 8%;
+    max-width: 100%;
+    gap: 3%;
 }
 
 #prediction-section{
@@ -145,13 +145,18 @@ h3{
     display: flex;
     flex-direction: column;
     gap:26px;
-   height: 100vh;
+    height: 100vh;
+}
+
+#prediction-title{
+    font-size: 30px;
 }
 
 .prediction-container{
     display: flex;
     padding-left: 5%;
     padding-right: 5%;
+    gap: 10%;
 }
 
 .prediction-inputs{
@@ -178,4 +183,63 @@ h3{
     border-color: rgb(0, 150, 170);
     transition: background-color 0.3s ease, color 0.3s ease;
     color:black;
+}
+
+.prediction-output{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap:70px;
+    border-color: rgba(255, 255, 255, 0.185);
+    border-style:groove;
+    width: 70%;
+    margin-top: 20px; /* Añade margen superior para separar del contenedor de inputs */
+    padding: 20px; /* Añade padding alrededor del contenedor de resultados */
+}
+
+.results-container{
+    display: flex;
+    width: 100%;
+    gap: 5%;
+    justify-content: center;
+    
+}
+
+.result-prediction{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(224, 208, 208, 0.185);
+    border-radius: 10px;
+    gap:20px;
+    width: 50%;
+    padding:10%;
+
+}
+
+.result-percentage{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 10px;
+    gap: 20px;
+    width: 50%;
+    padding:10%;
+}
+
+.advice-main-container{
+    justify-content: center;
+    padding: 10%;
+}
+
+.advice-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.185);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    gap: 20px;
 }

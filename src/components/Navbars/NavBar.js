@@ -2,6 +2,7 @@ import logo from "assets/images/logo.png"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+<<<<<<< HEAD
 function NavBar() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,6 +47,21 @@ function NavBar() {
                     <Link id="link" to="/login">Login</Link>
                     <Link id="link" to="/login">Contact</Link>
                 </div>
+=======
+function NavBar(){
+
+    return(<nav id="navbar">
+        <div className="nav-container">
+            <div className="logo-container"><img id="logo" src={logo}></img>
+            </div>
+            <div className="nav-buttons">
+                <ul id = "nav-buttons-list">
+                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Predict</a></il>
+                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Statistics</a></il>
+                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Graphics</a></il>
+                    <il className="nav-button"><a class="nav-link" href="#prediction-section">Contact</a></il>
+                </ul>
+>>>>>>> a331a1b2aaa033fed092b70144d386f9d3286cf7
             </div>
 
         </nav >
