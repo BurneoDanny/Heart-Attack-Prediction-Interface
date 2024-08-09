@@ -20,6 +20,9 @@ module.exports = {
           '950': '#011424',
         },
       },
+      screens: {
+        '3xl': '1700px',
+      },
     },
   },
   plugins: [],

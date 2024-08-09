@@ -12,8 +12,8 @@ function HeroSection() {
             </div>
             <div className="flex justify-center items-center h-full flex-col text-black-pearl-50 ">
                 <div className="flex flex-col justify-center items-center mb-8">
-                    <h1 className="text-[5em] font-bold">Heart-Attack Prediction System</h1>
-                    <h2 className="text-[2em]">2024</h2>
+                    <h1 className="text-[3em] 3xl:text-[5em] font-bold">Heart-Attack Prediction System</h1>
+                    <h2 className="text-[2em] 3xl:text-[2em]">2024</h2>
                 </div>
                 <Link to={'/wayared?menu=predict'} class="group relative inline-flex items-center justify-start overflow-hidden rounded-sm px-5 py-3 font-bold">
                     <span class="absolute left-0 top-0 h-32 w-32 -translate-y-2 translate-x-12 rotate-45 bg-black-pearl-50 opacity-[3%]"></span>

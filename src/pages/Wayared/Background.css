@@ -11,34 +11,3 @@
       var(--c2);
     background-size: var(--s) var(--s), calc(var(--s)/5) calc(var(--s)/5);
   }
-
-
-/* HTML: <div class="hamburger-menu"></div> */
-.hamburger-menu {
-  --c: #011424;
-
-  height: 35px;
-  aspect-ratio: 1;
-  background:
-   radial-gradient(closest-side at 12.5% 25%,var(--c) 97%,#0000 101%) 0 0/80% 40%,
-   linear-gradient(var(--c) 50%,#0000 0) top/80% 40% repeat-y;
-}
-
-
-/* HTML: <div class="cross"></div> */
-.cross {
-  --b: 4px; /* thickness */
-  --s: 3px; /* space around */            
-  --c: #011424;
-  
-  height: 45px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 4px solid var(--c);
-  box-sizing: border-box;
-  --g:conic-gradient(var(--c) 0 0) no-repeat 50%/;
-  background: 
-    var(--g) var(--b) calc(100% - 2*var(--s)),
-    var(--g) calc(100% - 2*var(--s)) var(--b);
-  rotate: 45deg;
-}
