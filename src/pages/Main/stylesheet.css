@@ -112,7 +112,7 @@ h3{
     flex-direction: column;
     width: 30%;
     height: 90vh;
-    gap:6%;
+    gap:4%;
     align-items: stretch;
     justify-content: stretch;
 }
