@@ -13,13 +13,16 @@ function Prediction() {
     const [glucose, setGlucose] = useState("");
     const [kcm, setKcm] = useState("");
     const [troponin, setTroponin] = useState("");
-    const [model, setModel] = useState("");  // Nuevo estado para el modelo de IA
+    const [model, setModel] = useState("");  // Estado para el modelo de IA
     const [predictionResult, setPredictionResult] = useState("");
     const [percentageResult, setPercentageResult] = useState("");
+    const [error, setError] = useState(null); // Estado para manejar errores
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
+        console.log("Model selected:", model); // Añadir esta línea para verificar el valor de 'model'
+
         const data = {
             age: age,
             gender: gender,
@@ -29,9 +32,9 @@ function Prediction() {
             glucose: parseFloat(glucose),
             kcm: parseFloat(kcm),
             troponin: parseFloat(troponin),
-            model: model
+            model: model  // Incluir el modelo seleccionado en los datos enviados al backend
         };
-    
+
         try {
             const response = await fetch("http://localhost:5000/predict", {
                 method: "POST",
@@ -40,22 +43,24 @@ function Prediction() {
                 },
                 body: JSON.stringify(data)
             });
-    
+
             if (!response.ok) {
-                throw new Error("Network response was not ok");
+                // Manejar errores HTTP
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Error en la predicción");
             }
-    
+
             const result = await response.json();
-            console.log("Response from backend:", result);
-    
-            setPredictionResult(result.prediction);
-            console.log("Updated predictionResult:", result.prediction);
-    
-            setPercentageResult(result.percentage);
-            console.log("Updated percentageResult:", result.percentage);
-    
+            console.log("Backend Response:", result);
+
+            setPredictionResult(result.prediction || "Unknown result");
+            setPercentageResult(result.percentage || "N/A");
+
+            setError(null); // Limpiar cualquier error anterior
+
         } catch (error) {
             console.error("Error:", error);
+            setError(error.message); // Guardar el error en el estado
         }
     };
 
@@ -80,6 +85,7 @@ function Prediction() {
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
                     </div>
                     <div className="prediction-output border-4">
+                        {error && <div className="error-message">{error}</div>}
                         <div className="results-container">
                             <div className="result-prediction">
                                 <h3>Prediction Result</h3>
@@ -92,7 +98,7 @@ function Prediction() {
                         </div>
                         <div className="advice-container">
                             <div><h3>Advice</h3></div>
-                            <div><span className="advice text-white">Advice based on prediction...</span></div>
+                            <div><span className="advice  text-white">Advice based on prediction...</span></div>
                         </div>
                     </div>
                 </div>
