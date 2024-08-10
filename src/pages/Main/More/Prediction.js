@@ -1,15 +1,8 @@
 import prediction_background from "assets/images/prediction_background.jpg";
-import React, { useState } from 'react';
 import GenderDropdown from "./GenderDropdown";
 import AgeRangeSlider from "./AgeRangeSlider";
 
 function Prediction(){
-
-    const [age, setAge] = useState(50); // Valor inicial del slider
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
 
     return(<div id="prediction-section" class="" style={{ backgroundImage: `url(${prediction_background})` }}>
         <div className="prediction-main-container">
