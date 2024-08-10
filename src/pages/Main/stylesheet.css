@@ -43,7 +43,9 @@ height: 100%;
     font-size: 50px;
 }
 
-#prediction-tile{padding-top: 20px;}
+#prediction-tile{
+    padding-top: 20px;
+}
 
 #titleh2{
     font-size: 40px;
@@ -51,8 +53,9 @@ height: 100%;
 
 .row{
     display: flex;
-    max-width: 100%;
-    gap: 3%;
+    gap: 8%;
+    justify-content: center;
+    
 }
 
 #prediction-section{
@@ -88,8 +91,9 @@ h3{
     backdrop-filter: blur(10px); /* Aplica el efecto de blur */
     display: flex;
     flex-direction: column;
-    gap:26px;
+    gap:1%;
     height: 100vh;
+    padding-top: 1%;
 }
 
 #prediction-title{
@@ -107,15 +111,15 @@ h3{
     display: flex;
     flex-direction: column;
     width: 30%;
-    height: 100%;
-    gap:35px;
+    height: 90vh;
+    gap:6%;
     align-items: stretch;
     justify-content: stretch;
 }
 
 #submit-button{
     border-radius: 20px;
-    border-color: white;
+    border-color: rgba(255, 255, 255, 0.185);
     background-color: transparent;
     padding: 13px;
     color:white;
@@ -139,6 +143,7 @@ h3{
     width: 70%;
     margin-top: 20px; /* Añade margen superior para separar del contenedor de inputs */
     padding: 20px; /* Añade padding alrededor del contenedor de resultados */
+    height: 80%;
 }
 
 .results-container{

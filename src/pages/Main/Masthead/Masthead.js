@@ -5,8 +5,8 @@ import "./Animation.css"
 function HeroSection() {
     return (
         <div className="relative h-screen w-full">
-            <div className="absolute h-full -z-10">
-                <video className="" autoPlay loop muted playsInline>
+            <div className="absolute  inset-0 overflow-hidden h-full -z-10">
+                <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
                     <source src={video_introduce} type="video/mp4"></source>
                 </video>
             </div>

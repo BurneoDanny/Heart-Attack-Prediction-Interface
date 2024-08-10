@@ -1,15 +1,25 @@
 import prediction_background from "assets/images/prediction_background.jpg";
+import React, { useState } from 'react';
+import GenderDropdown from "./GenderDropdown";
+import AgeRangeSlider from "./AgeRangeSlider";
 
 function Prediction(){
-    return(<div id="prediction-section" style={{ backgroundImage: `url(${prediction_background})` }}>
+
+    const [age, setAge] = useState(50); // Valor inicial del slider
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
+    return(<div id="prediction-section" class="" style={{ backgroundImage: `url(${prediction_background})` }}>
         <div className="prediction-main-container">
             <h1 id = "prediction-title" className= "titleh1" >Hear-Attack Prediction System</h1>
             <div className="prediction-container">
-            <div className="prediction-inputs">
+            <div className="prediction-inputs ">
                 <div><h3>Complete the data below</h3></div>
-                <div className="row">
-                <input className="input-item" type="text" placeholder="Age"></input>
-                <input className="input-item" type="text" placeholder="Gender"></input>
+                <div className="row max-w-full w-full overflow-hidden" >
+                <AgeRangeSlider></AgeRangeSlider>
+                <GenderDropdown></GenderDropdown>
                 </div>
                 <input className="input-item" type="text" placeholder="Impulse"></input>
                 <input className="input-item" type="text" placeholder="Pressure Hight"></input>
@@ -17,14 +27,13 @@ function Prediction(){
                 <input className="input-item" type="text" placeholder="Glucose"></input>
                 <input className="input-item" type="text" placeholder="Kcm"></input>
                 <input className="input-item" type="text" placeholder="Troponin"></input>
-                <button id="submit-button" type="submit" >Predict</button>
+                <button id="submit-button" class="border-4" type="submit" >Predict</button>
             </div>
-            <div className="prediction-output">
+            <div className="prediction-output border-4">
                 <div className="results-container">
                     <div className="result-prediction">
                         <h3>Prediction Result</h3>
                         <span>You are in Risk of suffer heart-attack</span>
-
                     </div>
                     <div className="result-percentage">
                     <h3>Percentage Result</h3>
