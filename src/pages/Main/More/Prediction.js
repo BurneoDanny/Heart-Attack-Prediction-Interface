@@ -4,7 +4,7 @@ import AgeRangeSlider from "./AgeRangeSlider";
 
 function Prediction(){
 
-    return(<div id="prediction-section" class="" style={{ backgroundImage: `url(${prediction_background})` }}>
+    return(<div id="prediction-section" class="w-screen" style={{ backgroundImage: `url(${prediction_background})` }}>
         <div className="prediction-main-container">
             <h1 id = "prediction-title" className= "titleh1" >Hear-Attack Prediction System</h1>
             <div className="prediction-container">
