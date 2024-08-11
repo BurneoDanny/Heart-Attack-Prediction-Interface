@@ -9,11 +9,11 @@ function GenderDropdown() {
 
     return (
         <div className="flex flex-col items-start">
-            <select 
-                id="gender" 
-                name="gender" 
-                value={gender} 
-                onChange={handleChange} 
+            <select
+                id="gender"
+                name="gender"
+                value={gender}
+                onChange={handleChange}
                 className="w-full p-2 bg-gray-700 text-white rounded-lg appearance-none">
                 <option value="" disabled>Select your gender</option>
                 <option value="male">Male</option>
