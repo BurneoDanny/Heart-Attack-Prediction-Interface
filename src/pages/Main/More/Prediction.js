@@ -3,6 +3,8 @@ import prediction_background from "assets/images/prediction_background.jpg";
 import GenderDropdown from "./GenderDropdown";
 import AgeRangeSlider from "./AgeRangeSlider";
 import ModelDropdown from "./ModelDropDown";
+import Advice from "./Advice";
+import Loading from "./Loading"; // Asegúrate de que este componente esté correctamente importado
 
 function Prediction() {
     const [age, setAge] = useState(50);
@@ -16,12 +18,14 @@ function Prediction() {
     const [model, setModel] = useState("");  // Estado para el modelo de IA
     const [predictionResult, setPredictionResult] = useState("");
     const [percentageResult, setPercentageResult] = useState("");
+    const [loading, setLoading] = useState(false); // Estado para manejar la carga
+    const [dataSubmitted, setDataSubmitted] = useState(false); // Estado para manejar si los datos han sido enviados
     const [error, setError] = useState(null); // Estado para manejar errores
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log("Model selected:", model); // Añadir esta línea para verificar el valor de 'model'
+        setLoading(true);  // Mostrar pantalla de carga
+        setDataSubmitted(true); // Indicar que los datos han sido enviados
 
         const data = {
             age: parseInt(age),
@@ -45,7 +49,6 @@ function Prediction() {
             });
 
             if (!response.ok) {
-                // Manejar errores HTTP
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Error en la predicción");
             }
@@ -53,17 +56,19 @@ function Prediction() {
             const result = await response.json();
             console.log("Backend Response:", result);
 
-            setPredictionResult(result.prediction || "Unknown result");
-            setPercentageResult(result.percentage || "N/A");
-
-            setError(null); // Limpiar cualquier error anterior
+            setTimeout(() => {
+                setPredictionResult(result.prediction || "Unknown result");
+                setPercentageResult(result.percentage || "N/A");
+                setError(null); // Limpiar cualquier error anterior
+                setLoading(false);  // Ocultar pantalla de carga después de 5 segundos
+            }, 5000);  // Esperar 5 segundos
 
         } catch (error) {
             console.error("Error:", error);
             setError(error.message); // Guardar el error en el estado
+            setLoading(false); // Ocultar pantalla de carga si hay un error
         }
     };
-
 
     return (
         <div id="prediction-section" style={{ backgroundImage: `url(${prediction_background})` }}>
@@ -85,22 +90,37 @@ function Prediction() {
                         <input className="input-item" type="text" placeholder="Troponin" value={troponin} onChange={(e) => setTroponin(e.target.value)}></input>
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
                     </div>
-                    <div className="prediction-output border-4">
-                        {error && <div className="error-message">{error}</div>}
-                        <div className="results-container">
-                            <div className="result-prediction">
-                                <h3>Prediction Result</h3>
-                                <span className="result text-white">{predictionResult}</span>
+                    <div className="prediction-output border-4 h-[400px] overflow-hidden flex flex-col justify-center items-center">
+                        {!dataSubmitted ? (
+                            <div className="text-center">
+                                <h2 className="text-2xl text-white">Ready to Predict?</h2>
+                                <p className="text-lg text-gray-300">Fill in the form and hit "Predict" to see the results.</p>
                             </div>
-                            <div className="result-percentage">
-                                <h3>Percentage Result</h3>
-                                <span className="percentage text-white">{percentageResult}</span>
-                            </div>
-                        </div>
-                        <div className="advice-container">
-                            <div><h3>Advice</h3></div>
-                            <div><span className="advice  text-white">Advice based on prediction...</span></div>
-                        </div>
+                        ) : (
+                            loading ? (
+                                <Loading />
+                            ) : (
+                                <>
+                                    {error && <div className="error-message">{error}</div>}
+                                    <div className="results-container">
+                                        <div className="result-prediction">
+                                            <h3>Prediction Result</h3>
+                                            <span className="result text-white">{predictionResult}</span>
+                                        </div>
+                                        <div className="result-percentage">
+                                            <h3>Percentage Result</h3>
+                                            <span className="percentage text-white">{percentageResult}</span>
+                                        </div>
+                                    </div>
+                                    {predictionResult && (
+                                        <div className="advice-container">
+                                            <div><h3>Advice</h3></div>
+                                            <Advice riskLevel={predictionResult.includes("Positive") ? "Positive" : "Negative"} />
+                                        </div>
+                                    )}
+                                </>
+                            )
+                        )}
                     </div>
                 </div>
             </div>

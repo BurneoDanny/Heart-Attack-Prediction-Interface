@@ -137,7 +137,7 @@ h3{
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    gap:70px;
+    gap:30px;
     border-color: rgba(255, 255, 255, 0.185);
     border-style:groove;
     width: 70%;
@@ -193,6 +193,15 @@ h3{
     gap: 20px;
 }
 
+.advice-container {
+    flex-shrink: 0; /* Evita que se reduzca cuando el espacio sea limitado */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-height: 150px; /* Limita la altura del contenedor para que no sobresalga */
+    
+    padding: 10px; /* Añade un poco de relleno interno */
+}
+
+
 footer{
     display: flex;
     background-color: black;
@@ -247,3 +256,32 @@ gap:20%;
 }
 
 .section-title{color: rgb(0, 150, 170);}
+
+
+.loader {
+    border-top-color: #3498db; /* Color de la animación */
+    -webkit-animation: spin 1.5s linear infinite; /* Animación de rotación */
+    animation: spin 1.5s linear infinite; /* Animación de rotación */
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg); /* Inicio de la animación */
+        transform: rotate(0deg); /* Inicio de la animación */
+    }
+    100% {
+        -webkit-transform: rotate(360deg); /* Fin de la animación */
+        transform: rotate(360deg); /* Fin de la animación */
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg); /* Inicio de la animación */
+        transform: rotate(0deg); /* Inicio de la animación */
+    }
+    100% {
+        -webkit-transform: rotate(360deg); /* Fin de la animación */
+        transform: rotate(360deg); /* Fin de la animación */
+    }
+}
