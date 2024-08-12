@@ -24,8 +24,8 @@ function Prediction() {
         console.log("Model selected:", model); // Añadir esta línea para verificar el valor de 'model'
 
         const data = {
-            age: age,
-            gender: gender,
+            age: parseInt(age),
+            gender: parseInt(gender),
             impluse: parseInt(impluse),
             pressureHight: parseInt(pressureHight),
             pressureLow: parseInt(pressureLow),
@@ -64,6 +64,7 @@ function Prediction() {
         }
     };
 
+
     return (
         <div id="prediction-section" className="w-screen" style={{ backgroundImage: `url(${prediction_background})` }}>
             <div className="prediction-main-container">
@@ -72,8 +73,8 @@ function Prediction() {
                     <div className="prediction-inputs">
                         <div><h3>Complete the data below</h3></div>
                         <div className="row max-w-full w-full overflow-hidden">
-                            <AgeRangeSlider value={age} onChange={setAge}></AgeRangeSlider>
-                            <GenderDropdown value={gender} onChange={setGender}></GenderDropdown>
+                            <AgeRangeSlider setAge={setAge}></AgeRangeSlider>
+                            <GenderDropdown setGender={setGender}></GenderDropdown>
                         </div>
                         <ModelDropdown value={model} onChange={setModel}></ModelDropdown>
                         <input className="input-item" type="text" placeholder="Impulse" value={impluse} onChange={(e) => setImpluse(e.target.value)}></input>

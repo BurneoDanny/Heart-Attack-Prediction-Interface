@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-function GenderDropdown() {
-    const [gender, setGender] = useState('');
+function GenderDropdown(props) {
 
     const handleChange = (event) => {
-        setGender(event.target.value);
+        props.setGender(event.target.value);
+        console.log(event.target.value)
     };
 
     return (
@@ -12,12 +12,11 @@ function GenderDropdown() {
             <select
                 id="gender"
                 name="gender"
-                value={gender}
                 onChange={handleChange}
                 className="w-full p-2 bg-gray-700 text-white rounded-lg appearance-none">
                 <option value="" disabled>Select the gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value={0}>Male</option>
+                <option value={1}>Female</option>
             </select>
         </div>
     );
