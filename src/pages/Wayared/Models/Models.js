@@ -1,6 +1,6 @@
 import React from "react";
 import { CodeBlock, dracula } from "react-code-blocks";
-import ColabImage from "assets/images/google_colab.png"
+import ColabImage from "assets/images/google_colab.png";
 
 export default function Models() {
   const importation = `
@@ -16,12 +16,6 @@ export default function Models() {
     `;
 
   const data_details = `
-  from google.colab import drive
-drive.mount('/content/drive')
-
-data_dir = '/content/drive/MyDrive/ESPOL/IA-MATERIA/Heart Attack.csv' ## AQUI SE DEBE INSERTAR LA RUTA LOCAL DE DRIVE
-datos = pd.read_csv(data_dir)
-display(datos.head())
 
 ## LIMPIEZA DE DATOS
 datos['class'] = datos['class'].map({'negative': 0, 'positive': 1}) # conversion de variables cualitativas a cuantitativas
@@ -103,6 +97,15 @@ LR_score = accuracy_score(y_test, y_pred)
 LR_score
   `;
 
+  const mount = `
+from google.colab import drive
+drive.mount('/content/drive')
+
+datos['class'] = datos['class'].map({'negative': 0, 'positive': 1}) # conversion de variables cualitativas a cuantitativas
+datos_filtrados = datos[datos['impulse'] <= 300] # borrar ruido de pulsos exageradamente altos.
+datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_filtrados['class'] == 'negativa'))] #
+  `;
+
   return (
     <div className="text-black-pearl-50 overflow-y-auto h-screen">
       <div className="font-extrabold my-6 text-2xl">Modeling the solution</div>
@@ -123,31 +126,42 @@ LR_score
         <p className="flex-1 mx-24">
           We chose to work on Google Colab, as this tool allows for easy
           implementation of the models and helps achieve the project’s
-          objectives. The <a className="text-black-pearl-500 cursor-pointer"><i>Google Colab notebook</i></a> is available in view-only mode,
-          allowing for detailed inspection of the code implementation. A basic
-          understanding of Python programming and familiarity with the libraries
-          used in these models is recommended. It is important to note that some
-          models are implemented in similar ways, while others differ.
+          objectives. The{" "}
+          <a className="text-black-pearl-500 cursor-pointer">
+            <i>Google Colab notebook</i>
+          </a>{" "}
+          is available in view-only mode, allowing for detailed inspection of
+          the code implementation. A basic understanding of Python programming
+          and familiarity with the libraries used in these models is
+          recommended. It is important to note that some models are implemented
+          in similar ways, while others differ.
         </p>
-        <img src={ColabImage} className="w-full flex-1 rounded-sm"/>
+        <img src={ColabImage} className="w-full flex-1 rounded-sm" />
       </div>
-      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex justify-center items-center rounded-sm">
-      <CodeBlock
-          text={importation}
-          language="python"
-          showLineNumbers={true}
-          theme={dracula}
-          wrapLines={true}
-          codeBlock
-        />
-        <p className="flex-1 mx-24">
-          We chose to work on Google Colab, as this tool allows for easy
-          implementation of the models and helps achieve the project’s
-          objectives. The <a className="text-black-pearl-500 cursor-pointer"><i>Google Colab notebook</i></a> is available in view-only mode,
-          allowing for detailed inspection of the code implementation. A basic
-          understanding of Python programming and familiarity with the libraries
-          used in these models is recommended. It is important to note that some
-          models are implemented in similar ways, while others differ.
+      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex flex-col justify-center items-center rounded-sm text-left">
+        <p className="mb-4 text-center">The liraries used include:</p>
+        <div className="flex gap-2">
+          <CodeBlock
+            text={importation}
+            language="python"
+            showLineNumbers={true}
+            theme={dracula}
+            wrapLines={true}
+            codeBlock
+          />
+          <CodeBlock
+            text={importation}
+            language="python"
+            showLineNumbers={true}
+            theme={dracula}
+            wrapLines={true}
+            codeBlock
+          />
+        </div>
+      </div>
+      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black rounded-sm">
+        <p>
+         The suspect of noise in the dataset
         </p>
       </div>
       <div className="shadow-lg rounded-lg p-6 w-full text-left">
