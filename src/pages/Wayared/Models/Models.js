@@ -1,8 +1,9 @@
 import React from "react";
 import { CodeBlock, dracula } from "react-code-blocks";
+import ColabImage from "assets/images/google_colab.png"
 
 export default function Models() {
-    const importation = `
+  const importation = `
         import pandas as pd
         from sklearn.model_selection import train_test_split
         # Para regresion logistica
@@ -14,7 +15,7 @@ export default function Models() {
         import pickle
     `;
 
-    const data_details = `
+  const data_details = `
   from google.colab import drive
 drive.mount('/content/drive')
 
@@ -100,21 +101,65 @@ y_pred = LR.predict(X_test)
 # Evaluación final
 LR_score = accuracy_score(y_test, y_pred)
 LR_score
-  `
+  `;
 
-    return (
-        <div className="text-black-pearl-50">
-            <div className="font-bold mb-6 text-xl">Regression Logistic Model</div>
-            <div className="shadow-lg rounded-lg p-6 w-full text-left">
-                <CodeBlock
-                    text={importation}
-                    language="python"
-                    showLineNumbers={true}
-                    theme={dracula}
-                    wrapLines={true}
-                    codeBlock
-                />
-            </div>
-        </div >
-    );
+  return (
+    <div className="text-black-pearl-50 overflow-y-auto h-screen">
+      <div className="font-extrabold my-6 text-2xl">Modeling the solution</div>
+      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black rounded-sm">
+        <p>
+          Artificial intelligence (AI) models like Multi-Layer Perceptrons
+          (MLP), Logistic Regression, Decision Trees, Random Forests, Support
+          Vector Machines (SVM), and Gradient Boosting Machines (GBM) are
+          powerful tools for classification tasks. In this project, we applied
+          these models to predict the risk of acute myocardial infarction using
+          a clinical dataset. We will present the code that demonstrates how
+          these models were implemented, covering data preprocessing, model
+          training, evaluation, and key results. This walkthrough will provide a
+          clear understanding of the AI techniques employed in this analysis.
+        </p>
+      </div>
+      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex justify-center items-center rounded-sm">
+        <p className="flex-1 mx-24">
+          We chose to work on Google Colab, as this tool allows for easy
+          implementation of the models and helps achieve the project’s
+          objectives. The <a className="text-black-pearl-500 cursor-pointer"><i>Google Colab notebook</i></a> is available in view-only mode,
+          allowing for detailed inspection of the code implementation. A basic
+          understanding of Python programming and familiarity with the libraries
+          used in these models is recommended. It is important to note that some
+          models are implemented in similar ways, while others differ.
+        </p>
+        <img src={ColabImage} className="w-full flex-1 rounded-sm"/>
+      </div>
+      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex justify-center items-center rounded-sm">
+      <CodeBlock
+          text={importation}
+          language="python"
+          showLineNumbers={true}
+          theme={dracula}
+          wrapLines={true}
+          codeBlock
+        />
+        <p className="flex-1 mx-24">
+          We chose to work on Google Colab, as this tool allows for easy
+          implementation of the models and helps achieve the project’s
+          objectives. The <a className="text-black-pearl-500 cursor-pointer"><i>Google Colab notebook</i></a> is available in view-only mode,
+          allowing for detailed inspection of the code implementation. A basic
+          understanding of Python programming and familiarity with the libraries
+          used in these models is recommended. It is important to note that some
+          models are implemented in similar ways, while others differ.
+        </p>
+      </div>
+      <div className="shadow-lg rounded-lg p-6 w-full text-left">
+        <CodeBlock
+          text={data_details}
+          language="python"
+          showLineNumbers={true}
+          theme={dracula}
+          wrapLines={true}
+          codeBlock
+        />
+      </div>
+    </div>
+  );
 }
