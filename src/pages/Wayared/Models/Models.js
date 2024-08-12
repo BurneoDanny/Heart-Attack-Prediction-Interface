@@ -18,9 +18,9 @@ export default function Models() {
   const data_details = `
 
 ## LIMPIEZA DE DATOS
-datos['class'] = datos['class'].map({'negative': 0, 'positive': 1}) # conversion de variables cualitativas a cuantitativas
-datos_filtrados = datos[datos['impulse'] <= 300] # borrar ruido de pulsos exageradamente altos.
-datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_filtrados['class'] == 'negativa'))] # TROPONINA MAYOR A 9 NO PUEDE SER CLASE NEGATIVA / ruido
+datos['class'] = datos['class'].map({'negative': 0, 'positive': 1}) 
+datos_filtrados = datos[datos['impulse'] <= 300] 
+datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_filtrados['class'] == 'negativa'))] 
 
 X = datos.drop(columns='class')  # contiene todas las columnas a excepcion de class
 y = datos['class'] # contiene solo la columna de class
@@ -107,9 +107,9 @@ datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_f
   `;
 
   return (
-    <div className="text-black-pearl-50 overflow-y-auto h-screen">
+    <div className="overflow-y-auto h-screen text-black-pearl-50">
       <div className="font-extrabold my-6 text-2xl">Modeling the solution</div>
-      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black rounded-sm">
+      <div className="p-6 m-6 text-base border-2 rounded-sm border-black bg-black-pearl-950">
         <p>
           Artificial intelligence (AI) models like Multi-Layer Perceptrons
           (MLP), Logistic Regression, Decision Trees, Random Forests, Support
@@ -122,7 +122,7 @@ datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_f
           clear understanding of the AI techniques employed in this analysis.
         </p>
       </div>
-      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex justify-center items-center rounded-sm">
+      <div className="p-6 m-6 text-base border-2 flex justify-center items-center rounded-sm border-black bg-black-pearl-950">
         <p className="flex-1 mx-24">
           We chose to work on Google Colab, as this tool allows for easy
           implementation of the models and helps achieve the project’s
@@ -136,9 +136,11 @@ datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_f
           recommended. It is important to note that some models are implemented
           in similar ways, while others differ.
         </p>
-        <img src={ColabImage} className="w-full flex-1 rounded-sm" />
+        <div className="flex-1">
+          <img src={ColabImage} className="rounded-sm" />
+        </div>
       </div>
-      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black flex flex-col justify-center items-center rounded-sm text-left">
+      <div className="p-6 m-6  flex flex-col justify-center items-center rounded-sm text-left bg-black-pearl-950 text-base border-2 border-black">
         <p className="mb-4 text-center">The liraries used include:</p>
         <div className="flex gap-2">
           <CodeBlock
@@ -159,12 +161,12 @@ datos_filtrados = datos_filtrados[~((datos_filtrados['troponin'] > 9) & (datos_f
           />
         </div>
       </div>
-      <div className="p-6 m-6 bg-black-pearl-950 text-base border-2 border-black rounded-sm">
+      <div className="p-6 m-6 rounded-sm text-base border-2 bg-black-pearl-950 border-black">
         <p>
-         The suspect of noise in the dataset
+          The suspect of noise in the dataset
         </p>
       </div>
-      <div className="shadow-lg rounded-lg p-6 w-full text-left">
+      <div className="shadow-lg rounded-lg p-6 text-left">
         <CodeBlock
           text={data_details}
           language="python"
