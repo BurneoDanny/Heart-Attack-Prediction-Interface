@@ -8,7 +8,6 @@ export default function Main() {
         <main>
             <NavBar />
             <Masthead />
-            <Footer />
         </main>
     );
 }

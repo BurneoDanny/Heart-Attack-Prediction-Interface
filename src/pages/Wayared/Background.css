@@ -1,8 +1,8 @@
 
 #wayared {
     --s: 148px; /* control the size*/
-    --c1: #e6e6e6;
-    --c2: #ffffff;
+    --c1: #034577;
+    --c2: #011424;
     
     --_g: #0000 90deg,var(--c1) 0;
     background: 
