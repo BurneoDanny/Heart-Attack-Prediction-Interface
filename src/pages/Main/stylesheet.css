@@ -58,13 +58,6 @@ height: 100%;
     
 }
 
-#prediction-section{
-    height: 100vh;
-    background-size: cover; /* Asegúrate de que la imagen de fondo cubra todo el contenedor */
-    background-position: center; /* Centra la imagen de fondo */
-    box-shadow: 100%;
-}
-
 .titleh1{
     color: white;
 }
@@ -72,6 +65,13 @@ height: 100%;
 h3{
     margin: 0;
     color: white;
+}
+
+#prediction-section{
+    height: 100vh;
+    background-size: cover; /* Asegúrate de que la imagen de fondo cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    box-shadow: 100%;
 }
 
 .input-item{
@@ -86,16 +86,6 @@ h3{
     font-size: 15px;
 }
 
-.prediction-main-container{
-    background-color: rgba(255, 255, 255, 0.021); /* Fondo semitransparente para aplicar el efecto de blur */
-    backdrop-filter: blur(10px); /* Aplica el efecto de blur */
-    display: flex;
-    flex-direction: column;
-    gap:1%;
-    height: 100vh;
-    padding-top: 0.5%;
-}
-
 #prediction-title{
     font-size: 30px;
 }
@@ -105,6 +95,16 @@ h3{
     padding-left: 5%;
     padding-right: 5%;
     gap: 10%;
+}
+
+.prediction-main-container{
+    background-color: rgba(255, 255, 255, 0.021); /* Fondo semitransparente para aplicar el efecto de blur */
+    backdrop-filter: blur(10px); /* Aplica el efecto de blur */
+    display: flex;
+    flex-direction: column;
+    gap:1%;
+    height: 100vh;
+    padding-top: 0.5%;
 }
 
 .prediction-inputs{

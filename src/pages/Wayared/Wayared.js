@@ -149,7 +149,7 @@ export default function Wayared() {
                 </div>
             </aside>
 
-            <div className="relative">
+            <div className="relative w-full">
                 <div className={`${isSideBarOpen ? 'cross' : 'hamburger-menu'} absolute left-0 top-0 m-3 cursor-pointer z-10`} onClick={toggleSideBar}></div>
                 {isPredictMenuOpen && <Prediction />}
                 {isDocMenuOpen && <Documentation />}

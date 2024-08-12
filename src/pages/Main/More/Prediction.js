@@ -65,7 +65,7 @@ function Prediction() {
     };
 
     return (
-        <div id="prediction-section" className="w-screen" style={{ backgroundImage: `url(${prediction_background})` }}>
+        <div id="prediction-section" style={{ backgroundImage: `url(${prediction_background})` }}>
             <div className="prediction-main-container">
                 <h1 id="prediction-title" className="titleh1">Heart-Attack Prediction System</h1>
                 <div className="prediction-container">
