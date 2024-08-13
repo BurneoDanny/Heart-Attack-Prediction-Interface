@@ -1,33 +1,24 @@
-const importation = `
-# Librerias comunes 
+const importation = `# Librerias comunes 
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+import numpy as np
 import pandas as pd
 import pickle
 # Para regresion logistica
 from sklearn.linear_model import LogisticRegression
 #Para SVM
-from sklearn.svm import SVC
-`;
+from sklearn.svm import SVC`;
 
 const importation2 = `
-import pandas as pd
+
+## Librerias para el modelo de DF y random forest
 from sklearn.model_selection import KFold
-from sklearn.preprocessing import LabelEncoder
-import numpy as np
 from RandomForest import RandomForest
-import pickle  # Para guardar el modelo
-import numpy as np
-from collections import Counter
-import pandas as pd
-from sklearn.model_selection import KFold
 from sklearn.preprocessing import LabelEncoder
-import numpy as np
 from DecisionTree import DecisionTree
-import pickle
-from DecisionTree import DecisionTree
-import numpy as np
-from collections import Counter`;
+from collections import Counter
+
+`;
 
 const filtering = `
 # borrar ruido de pulsos exageradamente altos.

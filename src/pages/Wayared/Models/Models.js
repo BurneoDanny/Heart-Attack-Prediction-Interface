@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 export default function Models() {
   return (
     <div className="overflow-y-auto h-screen text-black-pearl-50 text-justify">
-      <div className="font-extrabold my-6 text-2xl text-center">
+      <div className="text-4xl font-bold text-center text-black-pearl-500 mt-4">
         Modeling the solution
       </div>
 
@@ -41,12 +41,6 @@ export default function Models() {
           preprocessing, model training, and evaluation. This walkthrough will
           provide a clear understanding of the AI techniques employed in this
           analysis.{" "}
-          <Link
-            to={"/wayared?menu=result"}
-            className="text-black-pearl-500 cursor-pointer"
-          >
-            Results here.
-          </Link>
         </p>
         <div className="flex justify-center items-center">
           <p className="flex-1 mx-24">
@@ -118,6 +112,16 @@ export default function Models() {
             codeBlock
           />
         </div>
+        <p>
+          Go to{" "}
+          <Link
+            className="text-black-pearl-500 cursor-pointer"
+            to={"/wayared?menu=result"}
+          >
+            <i>Results Section</i>
+          </Link>{" "}
+          to know more about the data analysis of the dataset.
+        </p>
       </div>
       <div className="p-6 m-6  flex flex-col justify-center items-center rounded-sm text-left bg-black-pearl-950 text-base border-2 border-black-pearl-500">
         <p className="mb-4 text-center font-bold">The liraries used include:</p>
