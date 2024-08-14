@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 
 export default function Models() {
   return (
-    <div className="overflow-y-auto h-screen text-black-pearl-50 text-justify">
+    <div className="h-screen text-black-pearl-50 text-justify overflow-y-auto">
       <div className="text-4xl font-bold text-center text-black-pearl-500 mt-4">
         Modeling the solution
       </div>
@@ -350,7 +350,6 @@ export default function Models() {
           />
         </div>
       </div>
-
       <div className="p-6 m-6 text-base border-2 flex gap-4 flex-col rounded-sm border-black-pearl-500 bg-black-pearl-950">
         <p>
           In this section, we have covered several machine learning models,
