@@ -1,31 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import prediction_background from "assets/images/prediction_background.jpg";
 import GenderDropdown from "./GenderDropdown";
 import AgeRangeSlider from "./AgeRangeSlider";
 import ModelDropdown from "./ModelDropDown";
 import Advice from "./Advice";
-import Loading from "./Loading"; // Asegúrate de que este componente esté correctamente importado
+import Loading from "./Loading";
+import Validation from "./Validation"; 
 
 function Prediction() {
     const [age, setAge] = useState(50);
-    const [gender, setGender] = useState(1);
+    const [gender, setGender] = useState("");
     const [impluse, setImpluse] = useState("");
     const [pressureHight, setPressureHight] = useState("");
     const [pressureLow, setPressureLow] = useState("");
     const [glucose, setGlucose] = useState("");
     const [kcm, setKcm] = useState("");
     const [troponin, setTroponin] = useState("");
-    const [model, setModel] = useState("");  // Estado para el modelo de IA
+    const [model, setModel] = useState("");  
     const [predictionResult, setPredictionResult] = useState("");
     const [percentageResult, setPercentageResult] = useState("");
-    const [loading, setLoading] = useState(false); // Estado para manejar la carga
-    const [dataSubmitted, setDataSubmitted] = useState(false); // Estado para manejar si los datos han sido enviados
-    const [error, setError] = useState(null); // Estado para manejar errores
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(null); 
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError(null);
+            }, 30000); 
+
+            return () => clearTimeout(timer); 
+        }
+    }, [error]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);  // Mostrar pantalla de carga
-        setDataSubmitted(true); // Indicar que los datos han sido enviados
+        const { errors, hasErrors } = Validation({ age, impluse, pressureHight, pressureLow, glucose, kcm, troponin, model, gender });
+
+        if (hasErrors) {
+            setError(errors);
+            return;
+        }
+
+        setLoading(true);
 
         const data = {
             age: parseInt(age),
@@ -36,7 +52,7 @@ function Prediction() {
             glucose: parseFloat(glucose),
             kcm: parseFloat(kcm),
             troponin: parseFloat(troponin),
-            model: model  // Incluir el modelo seleccionado en los datos enviados al backend
+            model: model  
         };
 
         try {
@@ -59,14 +75,14 @@ function Prediction() {
             setTimeout(() => {
                 setPredictionResult(result.prediction || "Unknown result");
                 setPercentageResult(result.percentage || "N/A");
-                setError(null); // Limpiar cualquier error anterior
-                setLoading(false);  // Ocultar pantalla de carga después de 5 segundos
-            }, 5000);  // Esperar 5 segundos
+                setError(null);
+                setLoading(false);
+            }, 5000);
 
         } catch (error) {
             console.error("Error:", error);
-            setError(error.message); // Guardar el error en el estado
-            setLoading(false); // Ocultar pantalla de carga si hay un error
+            setError({ global: error.message });
+            setLoading(false);
         }
     };
 
@@ -91,17 +107,18 @@ function Prediction() {
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
                     </div>
                     <div className="prediction-output border-4 h-[400px] overflow-hidden flex flex-col justify-center items-center">
-                        {!dataSubmitted ? (
+                        {loading ? (
+                            <Loading />
+                        ) : error ? (
                             <div className="text-center">
-                                <h2 className="text-2xl text-white">Ready to Predict?</h2>
-                                <p className="text-lg text-gray-300">Fill in the form and hit "Predict" to see the results.</p>
+                                <h2 className="text-2xl text-red-500">Please correct the errors below:</h2>
+                                {Object.keys(error).map((key) => (
+                                    <p key={key} className="text-red-500">{error[key]}</p>
+                                ))}
                             </div>
                         ) : (
-                            loading ? (
-                                <Loading />
-                            ) : (
+                            predictionResult ? (
                                 <>
-                                    {error && <div className="error-message">{error}</div>}
                                     <div className="results-container">
                                         <div className="result-prediction">
                                             <h3>Prediction Result</h3>
@@ -119,6 +136,11 @@ function Prediction() {
                                         </div>
                                     )}
                                 </>
+                            ) : (
+                                <div className="text-center">
+                                    <h2 className="text-2xl text-white">Ready to Predict?</h2>
+                                    <p className="text-lg text-gray-300">Fill in the form and hit "Predict" to see the results.</p>
+                                </div>
                             )
                         )}
                     </div>
