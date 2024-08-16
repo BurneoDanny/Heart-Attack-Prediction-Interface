@@ -112,7 +112,7 @@ h3{
     flex-direction: column;
     width: 30%;
     height: 90vh;
-    gap:4%;
+    gap: 1.6%;
     align-items: stretch;
     justify-content: stretch;
 }
@@ -286,3 +286,11 @@ gap:20%;
     }
 }
 
+.error-message{
+    font-size: 9px; /* Puedes ajustar este valor según lo que necesites */
+    color: #f56565; /* Esto equivale a text-red-500 en Tailwind CSS */
+    margin-top: -5px;
+    margin-bottom: 10px;
+    content: 0;
+    margin:0;
+}
