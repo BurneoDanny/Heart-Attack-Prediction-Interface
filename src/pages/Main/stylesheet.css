@@ -112,7 +112,7 @@ h3{
     flex-direction: column;
     width: 30%;
     height: 90vh;
-    gap: 1.6%;
+    gap: 1.5%;
     align-items: stretch;
     justify-content: stretch;
 }
@@ -293,4 +293,10 @@ gap:20%;
     margin-bottom: 10px;
     content: 0;
     margin:0;
+}
+
+.gap-container-button{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
 }

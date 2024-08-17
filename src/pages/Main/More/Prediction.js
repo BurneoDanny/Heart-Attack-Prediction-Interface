@@ -110,9 +110,11 @@ function Prediction() {
                         <Validation errors={{ kcm: errors.kcm }} />
                         <input className="input-item" type="text" placeholder="Kcm" value={kcm} onChange={(e) => setKcm(e.target.value)} />
                         <Validation errors={{ troponin: errors.troponin }} />
+                        <div className="gap-container-button">
                         <input className="input-item" type="text" placeholder="Troponin" value={troponin} onChange={(e) => setTroponin(e.target.value)} />
-                        
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
+                        </div>
+                        
                     </div>
                     <div className="prediction-output border-4 h-[400px] overflow-hidden flex flex-col justify-center items-center">
                         {!dataSubmitted ? (
