@@ -27,12 +27,12 @@ function Prediction() {
     const validateInputs = () => {
         const validationErrors = {};
         if (!model) validationErrors.model = "Select a prediction model.";
-        if (!impluse || impluse < 30 || impluse > 200) validationErrors.impluse = "Enter a valid impulse between 30 and ";
-        if (!pressureHight || pressureHight < 70 || pressureHight > 200) validationErrors.pressureHight = "Enter a valid high blood pressure between 70 and";
-        if (!pressureLow || pressureLow < 40 || pressureLow > 120) validationErrors.pressureLow = "Enter a valid low blood pressure between 40 and";
-        if (!glucose || glucose < 50 || glucose > 300) validationErrors.glucose = "Enter a valid glucose level between 50 and 300";
-        if (!kcm || kcm < 2 || kcm > 10) validationErrors.kcm = "Enter a valid KCM value between 2 and 10.";
-        if (!troponin || troponin < 0 || troponin > 50) validationErrors.troponin = "Enter a valid troponin level between 0 and 50";
+        if (!impluse || impluse < 25 || impluse > 220) validationErrors.impluse = "Enter a valid impulse between 25 and 220";
+        if (!pressureHight || pressureHight < 70 || pressureHight > 250) validationErrors.pressureHight = "Enter a valid high blood pressure between 70 and 250";
+        if (!pressureLow || pressureLow < 30 || pressureLow > 150) validationErrors.pressureLow = "Enter a valid low blood pressure between 30 and 150";
+        if (!glucose || glucose < 30 || glucose > 6200) validationErrors.glucose = "Enter a valid glucose level between 30 and 620";
+        if (!kcm || kcm < 0 || kcm > 520) validationErrors.kcm = "Enter a valid KCM value between 0 and 520";
+        if (!troponin || troponin < 0 || troponin > 9) validationErrors.troponin = "Enter a valid troponin level between 0 and 9";
 
         setErrors(validationErrors);
         return Object.keys(validationErrors).length === 0;
@@ -100,18 +100,18 @@ function Prediction() {
                         <Validation errors={{ model: errors.model }} />
                         <ModelDropdown value={model} onChange={setModel}></ModelDropdown>
                         <Validation errors={{ impluse: errors.impluse }} />
-                        <input className="input-item" type="text" placeholder="Impulse" value={impluse} onChange={(e) => setImpluse(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Heart Rate (BPM)" value={impluse} onChange={(e) => setImpluse(e.target.value)} />
                         <Validation errors={{ pressureHight: errors.pressureHight }} />
-                        <input className="input-item" type="text" placeholder="Pressure Hight" value={pressureHight} onChange={(e) => setPressureHight(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Pressure Hight (mmHg)" value={pressureHight} onChange={(e) => setPressureHight(e.target.value)} />
                         <Validation errors={{ pressureLow: errors.pressureLow }} />
-                        <input className="input-item" type="text" placeholder="Pressure Low" value={pressureLow} onChange={(e) => setPressureLow(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Pressure Low (mmHg)" value={pressureLow} onChange={(e) => setPressureLow(e.target.value)} />
                         <Validation errors={{ glucose: errors.glucose }} />
-                        <input className="input-item" type="text" placeholder="Glucose" value={glucose} onChange={(e) => setGlucose(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Glucose (mg/dL)" value={glucose} onChange={(e) => setGlucose(e.target.value)} />
                         <Validation errors={{ kcm: errors.kcm }} />
-                        <input className="input-item" type="text" placeholder="Kcm" value={kcm} onChange={(e) => setKcm(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Kcm (ng/mL)" value={kcm} onChange={(e) => setKcm(e.target.value)} />
                         <Validation errors={{ troponin: errors.troponin }} />
                         <div className="gap-container-button">
-                        <input className="input-item" type="text" placeholder="Troponin" value={troponin} onChange={(e) => setTroponin(e.target.value)} />
+                        <input className="input-item" type="text" placeholder="Troponin (ng/mL)" value={troponin} onChange={(e) => setTroponin(e.target.value)} />
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
                         </div>
                         
