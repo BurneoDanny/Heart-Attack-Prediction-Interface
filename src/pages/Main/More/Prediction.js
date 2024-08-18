@@ -4,7 +4,8 @@ import GenderDropdown from "./GenderDropdown";
 import AgeRangeSlider from "./AgeRangeSlider";
 import ModelDropdown from "./ModelDropDown";
 import Advice from "./Advice";
-import Loading from "./Loading"; // Asegúrate de que este componente esté correctamente importado
+import Loading from "./Loading"; 
+import Validation from "./Validation"; 
 
 function Prediction() {
     const [age, setAge] = useState(50);
@@ -15,17 +16,33 @@ function Prediction() {
     const [glucose, setGlucose] = useState("");
     const [kcm, setKcm] = useState("");
     const [troponin, setTroponin] = useState("");
-    const [model, setModel] = useState("");  // Estado para el modelo de IA
+    const [model, setModel] = useState("");  
     const [predictionResult, setPredictionResult] = useState("");
     const [percentageResult, setPercentageResult] = useState("");
-    const [loading, setLoading] = useState(false); // Estado para manejar la carga
-    const [dataSubmitted, setDataSubmitted] = useState(false); // Estado para manejar si los datos han sido enviados
-    const [error, setError] = useState(null); // Estado para manejar errores
+    const [loading, setLoading] = useState(false);
+    const [dataSubmitted, setDataSubmitted] = useState(false);
+    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState({}); 
+
+    const validateInputs = () => {
+        const validationErrors = {};
+        if (!model) validationErrors.model = "Select a prediction model.";
+        if (!impluse || impluse < 25 || impluse > 220) validationErrors.impluse = "Enter a valid impulse between 25 and 220";
+        if (!pressureHight || pressureHight < 70 || pressureHight > 250) validationErrors.pressureHight = "Enter a valid high blood pressure between 70 and 250";
+        if (!pressureLow || pressureLow < 30 || pressureLow > 150) validationErrors.pressureLow = "Enter a valid low blood pressure between 30 and 150";
+        if (!glucose || glucose < 30 || glucose > 6200) validationErrors.glucose = "Enter a valid glucose level between 30 and 620";
+        if (!kcm || kcm < 0 || kcm > 520) validationErrors.kcm = "Enter a valid KCM value between 0 and 520";
+        if (!troponin || troponin < 0 || troponin > 9) validationErrors.troponin = "Enter a valid troponin level between 0 and 9";
+
+        setErrors(validationErrors);
+        return Object.keys(validationErrors).length === 0;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);  // Mostrar pantalla de carga
-        setDataSubmitted(true); // Indicar que los datos han sido enviados
+        if (!validateInputs()) return; 
+        setLoading(true);
+        setDataSubmitted(true);
 
         const data = {
             age: parseInt(age),
@@ -36,7 +53,7 @@ function Prediction() {
             glucose: parseFloat(glucose),
             kcm: parseFloat(kcm),
             troponin: parseFloat(troponin),
-            model: model  // Incluir el modelo seleccionado en los datos enviados al backend
+            model: model
         };
 
         try {
@@ -59,14 +76,13 @@ function Prediction() {
             setTimeout(() => {
                 setPredictionResult(result.prediction || "Unknown result");
                 setPercentageResult(result.percentage || "N/A");
-                setError(null); // Limpiar cualquier error anterior
-                setLoading(false);  // Ocultar pantalla de carga después de 5 segundos
-            }, 5000);  // Esperar 5 segundos
-
+                setError(null);
+                setLoading(false);
+            }, 5000);
         } catch (error) {
             console.error("Error:", error);
-            setError(error.message); // Guardar el error en el estado
-            setLoading(false); // Ocultar pantalla de carga si hay un error
+            setError(error.message);
+            setLoading(false);
         }
     };
 
@@ -81,14 +97,24 @@ function Prediction() {
                             <AgeRangeSlider setAge={setAge}></AgeRangeSlider>
                             <GenderDropdown setGender={setGender}></GenderDropdown>
                         </div>
+                        <Validation errors={{ model: errors.model }} />
                         <ModelDropdown value={model} onChange={setModel}></ModelDropdown>
-                        <input className="input-item" type="text" placeholder="Impulse" value={impluse} onChange={(e) => setImpluse(e.target.value)}></input>
-                        <input className="input-item" type="text" placeholder="Pressure Hight" value={pressureHight} onChange={(e) => setPressureHight(e.target.value)}></input>
-                        <input className="input-item" type="text" placeholder="Pressure Low" value={pressureLow} onChange={(e) => setPressureLow(e.target.value)}></input>
-                        <input className="input-item" type="text" placeholder="Glucose" value={glucose} onChange={(e) => setGlucose(e.target.value)}></input>
-                        <input className="input-item" type="text" placeholder="Kcm" value={kcm} onChange={(e) => setKcm(e.target.value)}></input>
-                        <input className="input-item" type="text" placeholder="Troponin" value={troponin} onChange={(e) => setTroponin(e.target.value)}></input>
+                        <Validation errors={{ impluse: errors.impluse }} />
+                        <input className="input-item" type="text" placeholder="Heart Rate (BPM)" value={impluse} onChange={(e) => setImpluse(e.target.value)} />
+                        <Validation errors={{ pressureHight: errors.pressureHight }} />
+                        <input className="input-item" type="text" placeholder="Pressure Hight (mmHg)" value={pressureHight} onChange={(e) => setPressureHight(e.target.value)} />
+                        <Validation errors={{ pressureLow: errors.pressureLow }} />
+                        <input className="input-item" type="text" placeholder="Pressure Low (mmHg)" value={pressureLow} onChange={(e) => setPressureLow(e.target.value)} />
+                        <Validation errors={{ glucose: errors.glucose }} />
+                        <input className="input-item" type="text" placeholder="Glucose (mg/dL)" value={glucose} onChange={(e) => setGlucose(e.target.value)} />
+                        <Validation errors={{ kcm: errors.kcm }} />
+                        <input className="input-item" type="text" placeholder="Kcm (ng/mL)" value={kcm} onChange={(e) => setKcm(e.target.value)} />
+                        <Validation errors={{ troponin: errors.troponin }} />
+                        <div className="gap-container-button">
+                        <input className="input-item" type="text" placeholder="Troponin (ng/mL)" value={troponin} onChange={(e) => setTroponin(e.target.value)} />
                         <button id="submit-button" className="border-4" type="submit" onClick={handleSubmit}>Predict</button>
+                        </div>
+                        
                     </div>
                     <div className="prediction-output border-4 h-[400px] overflow-hidden flex flex-col justify-center items-center">
                         {!dataSubmitted ? (

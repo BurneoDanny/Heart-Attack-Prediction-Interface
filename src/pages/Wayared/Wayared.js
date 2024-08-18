@@ -9,13 +9,23 @@ import { ReactComponent as ModelIcon } from "assets/svgs/model.svg";
 import { ReactComponent as ContactIcon } from "assets/svgs/contact.svg";
 import { ReactComponent as ResultIcon } from "assets/svgs/result.svg";
 import Documentation from "./Documentation/Documentation";
-import Results from "./Results/Results";
+import Dataset from "./Dataset/Dataset";
 import Models from "./Models/Models";
 import Contact from "./Contact/Contact";
 import Prediction from "pages/Main/More/Prediction";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import logo from "assets/images/logo.png";
 import wayared from "assets/images/wayaredProHD.jpg";
+import ia1 from "assets/images/ia1.jpg";
+import ia2 from "assets/images/ia2.jpg";
+import ia3 from "assets/images/ia3.jpg";
+import ia4 from "assets/images/ia4.jpg";
+import ia5 from "assets/images/ia5.jpg";
+import ia6 from "assets/images/ia6.jpg";
+import ia7 from "assets/images/ia7.jpg";
+import ia8 from "assets/images/ia8.jpg";
+import ia9 from "assets/images/ia9.jpg";
+import ia10 from "assets/images/ia10.jpg";
 
 export default function Wayared() {
   const [isPredictMenuOpen, setPredictMenuOpen] = useState(false);
@@ -26,6 +36,8 @@ export default function Wayared() {
   const [isSideBarOpen, setSideBarOpen] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+  const images = [ia1, ia2, ia3, ia4, ia5, ia6, ia7, ia8, ia9, ia10, wayared];
+  const randomImage = images[Math.floor(Math.random() * images.length)];
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -47,7 +59,7 @@ export default function Wayared() {
       case "model":
         setModelMenuOpen(true);
         break;
-      case "result":
+      case "dataset":
         setResultMenuOpen(true);
         break;
       case "contact":
@@ -146,7 +158,7 @@ export default function Wayared() {
             </div>
 
             <div
-              onClick={() => toggleMenu("result")}
+              onClick={() => toggleMenu("dataset")}
               className={`${
                 isSideBarOpen ? "" : "justify-center"
               } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
@@ -155,7 +167,7 @@ export default function Wayared() {
                 <>
                   <ResultIcon className="w-8 h-8" />
                   <span className="mx-2 text-base lg:text-xl 3xl:text-2xl font-medium">
-                    Results
+                    Dataset
                   </span>
                 </>
               ) : (
@@ -195,17 +207,12 @@ export default function Wayared() {
                   Use any model to predict now!
                 </h2>
                 <p className="mt-1 text-[10px] 3xl:text-xs text-gray-500 dark:text-gray-400">
-                  Soy un otaku nivel OMEGA 3, mi vida es un anime y necesito a
-                  mi heroine para completar mi historia u.u. Busco a una kawaii
-                  que me soporte en mi obsesión por el manga y el anime, que me
-                  dé ramen cuando tenga hambre y que me deje ver mi colección de
-                  figuritas sin juzgarme Si eres una girl gamer que puede
-                  soportar mi nivel de otakismo, ¡vamos a crear un amor épico
-                  que hará que el de Kirito y Asuna parezca un cuento de hadas!
+                  You can use any model to predict now. Just click the predict
+                  button.
                 </p>
                 <img
                   className="object-cover w-full h-32 mt-2 rounded-lg"
-                  src={wayared}
+                  src={randomImage}
                   alt=""
                 />
               </div>
@@ -224,7 +231,7 @@ export default function Wayared() {
         {isPredictMenuOpen && <Prediction />}
         {isDocMenuOpen && <Documentation />}
         {isModelMenuOpen && <Models />}
-        {isResultMenuOpen && <Results />}
+        {isResultMenuOpen && <Dataset />}
         {isContactMenuOpen && <Contact />}
       </div>
 

@@ -112,7 +112,7 @@ h3{
     flex-direction: column;
     width: 30%;
     height: 90vh;
-    gap:4%;
+    gap: 1.5%;
     align-items: stretch;
     justify-content: stretch;
 }
@@ -284,4 +284,19 @@ gap:20%;
         -webkit-transform: rotate(360deg); /* Fin de la animación */
         transform: rotate(360deg); /* Fin de la animación */
     }
+}
+
+.error-message{
+    font-size: 9px; /* Puedes ajustar este valor según lo que necesites */
+    color: #f56565; /* Esto equivale a text-red-500 en Tailwind CSS */
+    margin-top: -5px;
+    margin-bottom: 10px;
+    content: 0;
+    margin:0;
+}
+
+.gap-container-button{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
 }
