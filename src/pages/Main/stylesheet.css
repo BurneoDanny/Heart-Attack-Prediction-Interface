@@ -328,5 +328,9 @@ gap:20%;
 .gap-container-button{
     display: flex;
     flex-direction: column;
-    gap:30px;
+    gap:20px;
+}
+
+.bestmodel{
+    margin:0;
 }

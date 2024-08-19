@@ -6,6 +6,7 @@ import ModelDropdown from "./ModelDropDown";
 import Advice from "./Advice";
 import Loading from "./Loading";
 import Validation from "./Validation";
+import { FaStar } from 'react-icons/fa';
 
 function Prediction() {
   const [age, setAge] = useState(50);
@@ -66,15 +67,24 @@ function Prediction() {
       model: model,
     };
 
-    try {
-      const apiUrl = process.env.REACT_APP_API_KEY;
-      const response = await fetch(`${apiUrl}/predict`, {
+    //try {
+   //   const apiUrl = process.env.REACT_APP_API_KEY;
+  //    const response = await fetch(`${apiUrl}/predict`, {
+  //      method: "POST",
+  //      headers: {
+   //       "Content-Type": "application/json",
+   //     },
+   //     body: JSON.stringify(data),
+   //   });
+
+   try {
+    const response = await fetch("http://localhost:5000/predict", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(data),
-      });
+        body: JSON.stringify(data)
+    });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -97,6 +107,10 @@ function Prediction() {
     }
   };
 
+  const handleBestModelSelection = () => {
+    setModel('gbm');
+};
+
   return (
     <div
       id="prediction-section"
@@ -115,8 +129,15 @@ function Prediction() {
               <AgeRangeSlider setAge={setAge}></AgeRangeSlider>
               <GenderDropdown setGender={setGender}></GenderDropdown>
             </div>
-            <Validation errors={{ model: errors.model }} />
-            <ModelDropdown value={model} onChange={setModel}></ModelDropdown>
+            <div className="bestmodel w-full flex items-center mb-4">
+                            <div className="flex-grow">
+                                <Validation errors={{ model: errors.model }} />
+                                <ModelDropdown value={model} onChange={setModel} className="w-full" />
+                            </div>
+                            <button onClick={handleBestModelSelection} className="ml-2 p-2 bg-gray-800 rounded text-white">
+                                <FaStar />
+                            </button>
+                        </div>
             <Validation errors={{ impluse: errors.impluse }} />
             <input
               className="input-item"
