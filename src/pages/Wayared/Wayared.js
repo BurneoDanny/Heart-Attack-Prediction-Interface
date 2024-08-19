@@ -207,8 +207,17 @@ export default function Wayared() {
                   Use any model to predict now!
                 </h2>
                 <p className="mt-1 text-[10px] 3xl:text-xs text-gray-500 dark:text-gray-400">
-                  You can use any model to predict now. Just click the predict
-                  button.
+                  Click{" "}
+                  <a
+                    href="https://heart-attack-prediction-models.onrender.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 underline"
+                  >
+                    here
+                  </a>{" "}
+                  if prediction is not working, then wait for a few seconds and
+                  try again.
                 </p>
                 <img
                   className="object-cover w-full h-32 mt-2 rounded-lg"
