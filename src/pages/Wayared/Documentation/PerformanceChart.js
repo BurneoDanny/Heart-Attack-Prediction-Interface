@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
-export default function Documentation() {
+const PerformanceChart = () => {
   const [selectedModels, setSelectedModels] = useState({
     'Logistic Regression': true,
     'Decision Tree': true,
@@ -77,7 +77,6 @@ export default function Documentation() {
   };
 
   const options = {
-    maintainAspectRatio: false, // Permitir que el gráfico sea responsivo
     scales: {
       r: {
         suggestedMin: 0.85,
@@ -99,14 +98,14 @@ export default function Documentation() {
   };
 
   return (
-    <div className="performance-chart-container max-w-4xl mx-auto p-4">
-      <h2 className="text-center text-white text-2xl font-bold mb-4">Model Performance Comparison</h2>
-      <div className="flex justify-center flex-wrap space-x-2 space-y-2 mb-6">
+    <div className="performance-chart-container">
+      <h2 className="text-center text-2xl font-bold mb-4">Model Performance Comparison</h2>
+      <div className="flex justify-center space-x-4 mb-6">
         {Object.keys(selectedModels).map((model) => (
           <button
             key={model}
             onClick={() => toggleModel(model)}
-            className={`p-2 border rounded w-40 ${
+            className={`p-2 border rounded ${
               selectedModels[model] ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
             }`}
           >
@@ -114,9 +113,9 @@ export default function Documentation() {
           </button>
         ))}
       </div>
-      <div className="relative h-[400px] md:h-[500px]">
-        <Radar data={data} options={options} />
-      </div>
+      <Radar data={data} options={options} />
     </div>
   );
-}
+};
+
+export default PerformanceChart;
