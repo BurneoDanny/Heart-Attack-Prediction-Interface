@@ -97,6 +97,36 @@ h3{
     gap: 10%;
 }
 
+@media (max-width: 767px) {
+    #prediction-section{
+        height: min-content !important ;
+    }
+
+    .prediction-main-container{
+        height: fit-content !important;
+    }
+
+    .prediction-container{
+        padding: 1;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .prediction-inputs{
+        gap: 10px !important;
+        padding: 0;
+        margin: 0;
+        width: 100vw !important;
+        height: 100% !important;
+    }
+
+    .prediction-output{
+        width: 100vw !important;
+        padding: 0 !important;
+    }
+}
+
 .prediction-main-container{
     background-color: rgba(255, 255, 255, 0.021); /* Fondo semitransparente para aplicar el efecto de blur */
     backdrop-filter: blur(10px); /* Aplica el efecto de blur */
@@ -298,5 +328,9 @@ gap:20%;
 .gap-container-button{
     display: flex;
     flex-direction: column;
-    gap:30px;
+    gap:20px;
+}
+
+.bestmodel{
+    margin:0;
 }
