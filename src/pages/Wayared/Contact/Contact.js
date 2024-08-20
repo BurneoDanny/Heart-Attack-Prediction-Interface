@@ -1,26 +1,28 @@
 import React from "react";
-
+import dannyImage from "../../../assets/images/danny.jpg";
+import jaredImage from "../../../assets/images/jared.png";
+import ricardoImage from "../../../assets/images/ricardo.jpg";
 const teamMembers = [
     {
         name: "Jared Castillo Chiang",
         role: "Student",
         email: "jarecast@espol.edu.ec",
         phone: "+593 993226877",
-        imageUrl: "path_to_john_image.jpg",
+        imageUrl: jaredImage,
     },
     {
         name: "Ricardo Molina Coronel",
         role: "Student",
         email: "ridumoli@espol.edu.ec",
         phone: "+593 988975302",
-        imageUrl: "path_to_jane_image.jpg",
+        imageUrl: ricardoImage,
     },
     {
         name: "Danny Burneo Espin",
         role: "Student",
         email: "djburneo@espol.edu.ec",
         phone: "+593 996894747",
-        imageUrl: "path_to_jane_image.jpg",
+        imageUrl: dannyImage,
     },
     
 ];
@@ -34,7 +36,7 @@ function Contact() {
                     <div key={index} className="bg-gray-800 rounded-lg shadow-lg p-6 max-w-xs">
                         <img
                             src={member.imageUrl}
-                            alt={`${member.name}'s photo`}
+                            alt={`${member.name}`}
                             className="w-32 h-32 rounded-full mx-auto mb-4"
                         />
                         <h3 className="text-2xl font-semibold text-center mb-2">{member.name}</h3>
