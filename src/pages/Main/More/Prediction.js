@@ -6,7 +6,8 @@ import ModelDropdown from "./ModelDropDown";
 import Advice from "./Advice";
 import Loading from "./Loading";
 import Validation from "./Validation";
-import { FaStar } from 'react-icons/fa';
+import { FaStar } from "react-icons/fa";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 function Prediction() {
   const [age, setAge] = useState(50);
@@ -68,23 +69,23 @@ function Prediction() {
     };
 
     //try {
-   //   const apiUrl = process.env.REACT_APP_API_KEY;
-  //    const response = await fetch(`${apiUrl}/predict`, {
-  //      method: "POST",
-  //      headers: {
-   //       "Content-Type": "application/json",
-   //     },
-   //     body: JSON.stringify(data),
-   //   });
+    //   const apiUrl = process.env.REACT_APP_API_KEY;
+    //    const response = await fetch(`${apiUrl}/predict`, {
+    //      method: "POST",
+    //      headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-   try {
-    const response = await fetch("http://localhost:5000/predict", {
+    try {
+      const response = await fetch("http://localhost:5000/predict", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
-    });
+        body: JSON.stringify(data),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -108,8 +109,8 @@ function Prediction() {
   };
 
   const handleBestModelSelection = () => {
-    setModel('gbm');
-};
+    setModel("gbm");
+  };
 
   return (
     <div
@@ -130,14 +131,22 @@ function Prediction() {
               <GenderDropdown setGender={setGender}></GenderDropdown>
             </div>
             <div className="bestmodel w-full flex items-center mb-4">
-                            <div className="flex-grow">
-                                <Validation errors={{ model: errors.model }} />
-                                <ModelDropdown value={model} onChange={setModel} className="w-full" />
-                            </div>
-                            <button onClick={handleBestModelSelection} className="ml-2 p-2 bg-gray-800 rounded text-white">
-                                <FaStar />
-                            </button>
-                        </div>
+              <div className="flex-grow">
+                <Validation errors={{ model: errors.model }} />
+                <ModelDropdown
+                  value={model}
+                  onChange={setModel}
+                  className="w-full"
+                />
+              </div>
+              <button
+                onClick={handleBestModelSelection}
+                className="ml-2 p-2 bg-gray-800 rounded text-white"
+                data-tooltip-id="best-tooltip"
+              >
+                <FaStar />
+              </button>
+            </div>
             <Validation errors={{ impluse: errors.impluse }} />
             <input
               className="input-item"
@@ -243,6 +252,11 @@ function Prediction() {
           </div>
         </div>
       </div>
+      <ReactTooltip
+        id="best-tooltip"
+        place="right"
+        content="Click to select Best Model"
+      />
     </div>
   );
 }
