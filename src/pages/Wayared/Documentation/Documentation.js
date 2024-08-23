@@ -82,10 +82,22 @@ export default function Documentation() {
       r: {
         suggestedMin: 0.85,
         suggestedMax: 1,
+        pointLabels: {
+          color: 'rgb(255, 255, 255)', // Aquí puedes cambiar el color de los labels
+          font: {
+            size: 14, // Cambia el tamaño de la fuente si lo deseas
+          },
+        },
       },
     },
     plugins: {
       legend: {
+        labels: {
+          color: 'rgba(255, 255, 255, 1)', // Color de los labels en la leyenda
+          font: {
+            size: 14, // Tamaño de la fuente de los labels en la leyenda
+          },
+        },
         position: 'top',
       },
     },
@@ -106,9 +118,8 @@ export default function Documentation() {
           <button
             key={model}
             onClick={() => toggleModel(model)}
-            className={`p-2 border rounded w-40 ${
-              selectedModels[model] ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-            }`}
+            className={`p-2 border rounded w-40 ${selectedModels[model] ? 'bg-blue-500 text-white' : 'bg-gray-200 text-white-800'
+              }`}
           >
             {model}
           </button>
