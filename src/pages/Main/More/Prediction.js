@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Papa from "papaparse";
+import { saveAs } from "file-saver";
 import prediction_background from "assets/images/prediction_background.jpg";
 import GenderDropdown from "./GenderDropdown";
 import AgeRangeSlider from "./AgeRangeSlider";
@@ -6,7 +8,8 @@ import ModelDropdown from "./ModelDropDown";
 import Advice from "./Advice";
 import Loading from "./Loading";
 import Validation from "./Validation";
-import { FaStar } from 'react-icons/fa';
+import { FaStar } from "react-icons/fa";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 function Prediction() {
   const [age, setAge] = useState(50);
@@ -24,7 +27,72 @@ function Prediction() {
   const [dataSubmitted, setDataSubmitted] = useState(false);
   const [error, setError] = useState(null);
   const [errors, setErrors] = useState({});
+  const [csvData, setCsvData] = useState([]);
+  const [errorCSV, setErrorCSV] = useState(null);
+  const [loadingCSV, setLoadingCSV] = useState(false);
+  const [dataSubmittedCSV, setDataSubmittedCSV] = useState(false);
+  // Manejo del archivo CSV
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (result) => {
+          setCsvData(result.data);
+        },
+      });
+    }
+  };
 
+  const handleCsvSubmit = async () => {
+    if (csvData.length === 0) {
+      setError("Please upload a valid CSV file.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/batch-predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(csvData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Error in batch prediction");
+      }
+
+      const result = await response.json();
+      console.log("Batch Backend Response:", result);
+
+      // Crear un nuevo archivo CSV con los resultados
+      const updatedCsvData = csvData.map((row) => {
+        const predictionResult = result.find((res) => res.id === row.id);
+        return {
+          ...row,
+          prediction: predictionResult ? predictionResult.prediction : "N/A",
+          probabilidad: predictionResult ? predictionResult.probabilidad : "N/A",
+        };
+      });
+
+      const csv = Papa.unparse(updatedCsvData);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      saveAs(blob, "prediction_results.csv");
+
+      setDataSubmitted(true);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+      setError(error.message);
+      setLoading(false);
+    }
+  };
   const validateInputs = () => {
     const validationErrors = {};
     if (!model) validationErrors.model = "Select a prediction model.";
@@ -67,24 +135,26 @@ function Prediction() {
       model: model,
     };
 
-    //try {
-   //   const apiUrl = process.env.REACT_APP_API_KEY;
-  //    const response = await fetch(`${apiUrl}/predict`, {
-  //      method: "POST",
-  //      headers: {
-   //       "Content-Type": "application/json",
-   //     },
-   //     body: JSON.stringify(data),
-   //   });
 
-   try {
-    const response = await fetch("http://localhost:5000/predict", {
+
+    //try {
+    //   const apiUrl = process.env.REACT_APP_API_KEY;
+    //    const response = await fetch(`${apiUrl}/predict`, {
+    //      method: "POST",
+    //      headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
+
+    try {
+      const response = await fetch("http://localhost:5000/predict", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
-    });
+        body: JSON.stringify(data),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -108,10 +178,11 @@ function Prediction() {
   };
 
   const handleBestModelSelection = () => {
-    setModel('gbm');
-};
+    setModel("gbm");
+  };
 
   return (
+
     <div
       id="prediction-section"
       style={{ backgroundImage: `url(${prediction_background})` }}
@@ -130,14 +201,22 @@ function Prediction() {
               <GenderDropdown setGender={setGender}></GenderDropdown>
             </div>
             <div className="bestmodel w-full flex items-center mb-4">
-                            <div className="flex-grow">
-                                <Validation errors={{ model: errors.model }} />
-                                <ModelDropdown value={model} onChange={setModel} className="w-full" />
-                            </div>
-                            <button onClick={handleBestModelSelection} className="ml-2 p-2 bg-gray-800 rounded text-white">
-                                <FaStar />
-                            </button>
-                        </div>
+              <div className="flex-grow">
+                <Validation errors={{ model: errors.model }} />
+                <ModelDropdown
+                  value={model}
+                  onChange={setModel}
+                  className="w-full"
+                />
+              </div>
+              <button
+                onClick={handleBestModelSelection}
+                className="ml-2 p-2 bg-gray-800 rounded text-white"
+                data-tooltip-id="best-tooltip"
+              >
+                <FaStar />
+              </button>
+            </div>
             <Validation errors={{ impluse: errors.impluse }} />
             <input
               className="input-item"
@@ -240,9 +319,17 @@ function Prediction() {
                 )}
               </>
             )}
+
           </div>
         </div>
       </div>
+      <ReactTooltip
+        id="best-tooltip"
+        place="right"
+        content="Click to select Best Model"
+      />
+
+
     </div>
   );
 }

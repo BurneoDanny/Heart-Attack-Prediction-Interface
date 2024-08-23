@@ -45,6 +45,12 @@ function NavBar() {
           >
             Contact us
           </Link>
+          <Link
+            to="/wayared?menu=batchpredict"
+            className="transition-colors duration-300 ease-in-out hover:bg-black-pearl-500 p-4 rounded-sm"
+          >
+            Batch-Predict
+          </Link>
         </div>
         <div className="block mr-8 xl:hidden">
           <button

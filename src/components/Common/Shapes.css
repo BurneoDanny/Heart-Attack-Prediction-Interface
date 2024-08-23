@@ -1,51 +1,55 @@
 /* HTML: <div class="hamburger-menu"></div> */
 .hamburger-menu {
-    --c: #eff8ff;
-  
-    height: 35px;
-    aspect-ratio: 1;
-    background:
-     radial-gradient(closest-side at 12.5% 25%,var(--c) 97%,#0000 101%) 0 0/80% 40%,
-     linear-gradient(var(--c) 50%,#0000 0) top/80% 40% repeat-y;
-  }
-  
-  
-  /* HTML: <div class="cross"></div> */
-  .cross {
-    --b: 4px; /* thickness */
-    --s: 3px; /* space around */            
-    --c: #eff8ff;
-    
-    height: 45px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 4px solid var(--c);
-    box-sizing: border-box;
-    --g:conic-gradient(var(--c) 0 0) no-repeat 50%/;
-    background: 
-      var(--g) var(--b) calc(100% - 2*var(--s)),
-      var(--g) calc(100% - 2*var(--s)) var(--b);
-    rotate: 45deg;
-  }
+  --c: #eff8ff;
+
+  height: 35px;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(closest-side at 12.5% 25%, var(--c) 97%, #0000 101%) 0 0/80% 40%,
+    linear-gradient(var(--c) 50%, #0000 0) top/80% 40% repeat-y;
+}
 
 
-  /* HTML: <div class="chevron"></div> */
+/* HTML: <div class="cross"></div> */
+.cross {
+  --b: 4px;
+  /* thickness */
+  --s: 3px;
+  /* space around */
+  --c: #eff8ff;
+
+  height: 45px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid var(--c);
+  box-sizing: border-box;
+  --g: conic-gradient(var(--c) 0 0) no-repeat 50%/;
+  background:
+    var(--g) var(--b) calc(100% - 2*var(--s)),
+    var(--g) calc(100% - 2*var(--s)) var(--b);
+  rotate: 45deg;
+}
+
+
+/* HTML: <div class="chevron"></div> */
 .chevron_up {
-  --s: 6px; /* control the shape (can be percentage) */
+  --s: 6px;
+  /* control the shape (can be percentage) */
 
   width: 30px;
   aspect-ratio: 5/3;
-  clip-path: polygon(0 100%,0 calc(100% - var(--s)),50% 0,100% calc(100% - var(--s)),100% 100%,50% var(--s));
+  clip-path: polygon(0 100%, 0 calc(100% - var(--s)), 50% 0, 100% calc(100% - var(--s)), 100% 100%, 50% var(--s));
   background: #eff8ff;
 }
 
 
-  /* HTML: <div class="chevron"></div> */
+/* HTML: <div class="chevron"></div> */
 .chevron {
-  --s: 6px; /* control the shape (can be percentage) */
+  --s: 6px;
+  /* control the shape (can be percentage) */
 
   width: 30px;
   aspect-ratio: 5/3;
-  clip-path: polygon(0 0,0 var(--s),50% 100%,100% var(--s),100% 0,50% calc(100% - var(--s)));
+  clip-path: polygon(0 0, 0 var(--s), 50% 100%, 100% var(--s), 100% 0, 50% calc(100% - var(--s)));
   background: #eff8ff;
 }

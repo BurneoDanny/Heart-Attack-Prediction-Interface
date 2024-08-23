@@ -8,11 +8,13 @@ import { ReactComponent as PredictIcon } from "assets/svgs/predict.svg";
 import { ReactComponent as ModelIcon } from "assets/svgs/model.svg";
 import { ReactComponent as ContactIcon } from "assets/svgs/contact.svg";
 import { ReactComponent as ResultIcon } from "assets/svgs/result.svg";
+import { ReactComponent as BatchIcon } from "assets/svgs/batchpredict.svg";
 import Documentation from "./Documentation/Documentation";
 import Dataset from "./Dataset/Dataset";
 import Models from "./Models/Models";
 import Contact from "./Contact/Contact";
 import Prediction from "pages/Main/More/Prediction";
+import BatchPrediction from "pages/Main/More/UploadFile";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import logo from "assets/images/logo.png";
 import wayared from "assets/images/wayaredProHD.jpg";
@@ -34,6 +36,8 @@ export default function Wayared() {
   const [isResultMenuOpen, setResultMenuOpen] = useState(false);
   const [isContactMenuOpen, setContactMenuOpen] = useState(false);
   const [isSideBarOpen, setSideBarOpen] = useState(true);
+  const [isBatchMenuOpen, setBatchMenuOpen] = useState(true);
+
   const location = useLocation();
   const navigate = useNavigate();
   const images = [ia1, ia2, ia3, ia4, ia5, ia6, ia7, ia8, ia9, ia10, wayared];
@@ -48,7 +52,7 @@ export default function Wayared() {
     setModelMenuOpen(false);
     setResultMenuOpen(false);
     setContactMenuOpen(false);
-
+    setBatchMenuOpen(false);
     switch (menu) {
       case "predict":
         setPredictMenuOpen(true);
@@ -64,6 +68,9 @@ export default function Wayared() {
         break;
       case "contact":
         setContactMenuOpen(true);
+        break;
+      case "batchpredict":
+        setBatchMenuOpen(true);
         break;
       default:
         break;
@@ -81,15 +88,13 @@ export default function Wayared() {
   return (
     <div className="flex" id="wayared">
       <aside
-        className={`flex flex-col ${
-          isSideBarOpen ? "min-w-72 max-w-72" : "min-w-20 max-w-20"
-        } h-screen px-5 py-8 overflow-y-auto bg-black-pearl-950 border-r rtl:border-r-0 rtl:border-l transition-all duration-1000 ease-in-out`}
+        className={`flex flex-col ${isSideBarOpen ? "min-w-72 max-w-72" : "min-w-20 max-w-20"
+          } h-screen px-5 py-8 overflow-y-auto bg-black-pearl-950 border-r rtl:border-r-0 rtl:border-l transition-all duration-1000 ease-in-out`}
       >
         <Link to={"/"} className="flex justify-center items-center">
           <img
-            className={`w-auto ${
-              isSideBarOpen ? "h-10" : "h-8"
-            } transition-all duration-300 ease-in-out`}
+            className={`w-auto ${isSideBarOpen ? "h-10" : "h-8"
+              } transition-all duration-300 ease-in-out`}
             src={logo}
             alt="wayared_logo"
           />
@@ -99,9 +104,8 @@ export default function Wayared() {
           <nav className="flex-1 -mx-3 space-y-1 3xl:space-y-3">
             <div
               onClick={() => toggleMenu("predict")}
-              className={`${
-                isSideBarOpen ? "" : "justify-center"
-              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -120,9 +124,8 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("doc")}
-              className={`${
-                isSideBarOpen ? "" : "justify-center"
-              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -138,9 +141,8 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("model")}
-              className={`${
-                isSideBarOpen ? "" : "justify-center"
-              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -159,9 +161,8 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("dataset")}
-              className={`${
-                isSideBarOpen ? "" : "justify-center"
-              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -180,9 +181,8 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("contact")}
-              className={`${
-                isSideBarOpen ? "" : "justify-center"
-              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -193,6 +193,25 @@ export default function Wayared() {
                 </>
               ) : (
                 <ContactIcon
+                  data-tooltip-id="contact-tooltip"
+                  className="w-8 h-8"
+                />
+              )}
+            </div>
+            <div
+              onClick={() => toggleMenu("batchpredict")}
+              className={`${isSideBarOpen ? "" : "justify-center"
+                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+            >
+              {isSideBarOpen ? (
+                <>
+                  <BatchIcon className="w-8 h-8" />
+                  <span className="mx-2 text-base lg:text-xl 3xl:text-2xl font-medium">
+                    Batch Predict
+                  </span>
+                </>
+              ) : (
+                <BatchIcon
                   data-tooltip-id="contact-tooltip"
                   className="w-8 h-8"
                 />
@@ -232,9 +251,8 @@ export default function Wayared() {
 
       <div className="relative w-full">
         <div
-          className={`${
-            isSideBarOpen ? "cross" : "hamburger-menu"
-          } absolute left-0 top-0 m-3 cursor-pointer z-10`}
+          className={`${isSideBarOpen ? "cross" : "hamburger-menu"
+            } absolute left-0 top-0 m-3 cursor-pointer z-10`}
           onClick={toggleSideBar}
         ></div>
         {isPredictMenuOpen && <Prediction />}
@@ -242,6 +260,7 @@ export default function Wayared() {
         {isModelMenuOpen && <Models />}
         {isResultMenuOpen && <Dataset />}
         {isContactMenuOpen && <Contact />}
+        {isBatchMenuOpen && <BatchPrediction />}
       </div>
 
       <ReactTooltip id="predict-tooltip" place="bottom" content="Predict" />
