@@ -2,6 +2,8 @@
 
 Pasos para correr el programa en modo de desarrollo
 
-Instalar dependencias con "npm install"
+En la terminal:
 
-Correr app con "npm start"
+  Instalar dependencias con "npm install"
+
+  Correr app con "npm start"
