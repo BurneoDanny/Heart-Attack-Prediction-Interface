@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Papa from "papaparse";
 import { saveAs } from "file-saver";
-import prediction_background from "assets/images/prediction_background.jpg";
+import prediction_background from "assets/images/wallpapercsv.jpg";
 import Loading from "./Loading";
 import "./stylesheetbatch.css";
 function BatchPrediction() {
