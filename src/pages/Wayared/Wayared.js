@@ -88,13 +88,15 @@ export default function Wayared() {
   return (
     <div className="flex" id="wayared">
       <aside
-        className={`flex flex-col ${isSideBarOpen ? "min-w-72 max-w-72" : "min-w-20 max-w-20"
-          } h-screen px-5 py-8 overflow-y-auto bg-black-pearl-950 border-r rtl:border-r-0 rtl:border-l transition-all duration-1000 ease-in-out`}
+        className={`flex flex-col ${
+          isSideBarOpen ? "min-w-72 max-w-72" : "min-w-20 max-w-20"
+        } h-screen px-5 py-8 overflow-y-auto bg-black-pearl-950 border-r rtl:border-r-0 rtl:border-l transition-all duration-1000 ease-in-out`}
       >
         <Link to={"/"} className="flex justify-center items-center">
           <img
-            className={`w-auto ${isSideBarOpen ? "h-10" : "h-8"
-              } transition-all duration-300 ease-in-out`}
+            className={`w-auto ${
+              isSideBarOpen ? "h-10" : "h-8"
+            } transition-all duration-300 ease-in-out`}
             src={logo}
             alt="wayared_logo"
           />
@@ -104,8 +106,9 @@ export default function Wayared() {
           <nav className="flex-1 -mx-3 space-y-1 3xl:space-y-3">
             <div
               onClick={() => toggleMenu("predict")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -123,9 +126,31 @@ export default function Wayared() {
             </div>
 
             <div
+              onClick={() => toggleMenu("batchpredict")}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+            >
+              {isSideBarOpen ? (
+                <>
+                  <BatchIcon className="w-8 h-8" />
+                  <span className="mx-2 text-base lg:text-xl 3xl:text-2xl font-medium">
+                    CSV Predict
+                  </span>
+                </>
+              ) : (
+                <BatchIcon
+                  data-tooltip-id="contact-tooltip"
+                  className="w-8 h-8"
+                />
+              )}
+            </div>
+
+            <div
               onClick={() => toggleMenu("doc")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -141,8 +166,9 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("model")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -161,8 +187,9 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("dataset")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -181,8 +208,9 @@ export default function Wayared() {
 
             <div
               onClick={() => toggleMenu("contact")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
+              className={`${
+                isSideBarOpen ? "" : "justify-center"
+              } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
             >
               {isSideBarOpen ? (
                 <>
@@ -193,25 +221,6 @@ export default function Wayared() {
                 </>
               ) : (
                 <ContactIcon
-                  data-tooltip-id="contact-tooltip"
-                  className="w-8 h-8"
-                />
-              )}
-            </div>
-            <div
-              onClick={() => toggleMenu("batchpredict")}
-              className={`${isSideBarOpen ? "" : "justify-center"
-                } cursor-pointer flex items-center px-3 py-2 3xl:py-4 text-black-pearl-50 transition-colors duration-300 transform rounded-lg hover:bg-black-pearl-500 hover:text-black-pearl-50`}
-            >
-              {isSideBarOpen ? (
-                <>
-                  <BatchIcon className="w-8 h-8" />
-                  <span className="mx-2 text-base lg:text-xl 3xl:text-2xl font-medium">
-                    Batch Predict
-                  </span>
-                </>
-              ) : (
-                <BatchIcon
                   data-tooltip-id="contact-tooltip"
                   className="w-8 h-8"
                 />
@@ -251,8 +260,9 @@ export default function Wayared() {
 
       <div className="relative w-full">
         <div
-          className={`${isSideBarOpen ? "cross" : "hamburger-menu"
-            } absolute left-0 top-0 m-3 cursor-pointer z-10`}
+          className={`${
+            isSideBarOpen ? "cross" : "hamburger-menu"
+          } absolute left-0 top-0 m-3 cursor-pointer z-10`}
           onClick={toggleSideBar}
         ></div>
         {isPredictMenuOpen && <Prediction />}
