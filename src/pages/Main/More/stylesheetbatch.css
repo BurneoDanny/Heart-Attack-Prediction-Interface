@@ -16,8 +16,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(10px); /* Aplica el blur al fondo */
-  -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
 }
 
 .batch-prediction-wrapper {
@@ -77,8 +75,7 @@ input[type="file"]::-webkit-file-upload-button {
   background-color: #0056b3;
 }
 
-.success-message,
-.error-message {
+.success-message{
   margin-top: 15px;
   font-size: 1rem;
   text-align: center;
