@@ -7,17 +7,17 @@ body, html {
     color: white;
 }
 
-/* Estilo de la sección de predicción */
+/* CSS revisado para el contenedor del fondo con blur */
 #batch-prediction-section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh; 
-    background-color: rgba(255, 255, 255, 0.021); /* Fondo semitransparente para aplicar el efecto de blur */
-    backdrop-filter: blur(10px); /* Aplica el efecto de blur */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(10px); /* Aplica el blur al fondo */
+    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
 }
 
 .batch-prediction-wrapper {
@@ -30,10 +30,10 @@ body, html {
 }
 
 .batch-prediction-content {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar relieve */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #batch-prediction-title {

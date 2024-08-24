@@ -137,24 +137,24 @@ function Prediction() {
 
 
 
-    //try {
-    //   const apiUrl = process.env.REACT_APP_API_KEY;
-    //    const response = await fetch(`${apiUrl}/predict`, {
-    //      method: "POST",
-    //      headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
     try {
-      const response = await fetch("http://localhost:5000/predict", {
-        method: "POST",
-        headers: {
+      const apiUrl = process.env.REACT_APP_API_KEY;
+       const response = await fetch(`${apiUrl}/predict`, {
+         method: "POST",
+         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+
+    // try {
+    //   const response = await fetch("http://localhost:5000/predict", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
       if (!response.ok) {
         const errorData = await response.json();
