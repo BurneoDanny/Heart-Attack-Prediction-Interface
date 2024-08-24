@@ -278,6 +278,7 @@ export default function Wayared() {
       <ReactTooltip id="model-tooltip" place="bottom" content="Models" />
       <ReactTooltip id="result-tooltip" place="bottom" content="Results" />
       <ReactTooltip id="contact-tooltip" place="bottom" content="Contact Us" />
+      <ReactTooltip id="contact-tooltip" place="bottom" content="CSV Prediction" />
     </div>
   );
 }
