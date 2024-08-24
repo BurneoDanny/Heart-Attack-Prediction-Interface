@@ -55,7 +55,8 @@ function Prediction() {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/batch-predict", {
+      const apiUrl = process.env.REACT_APP_API_KEY;
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +78,9 @@ function Prediction() {
         return {
           ...row,
           prediction: predictionResult ? predictionResult.prediction : "N/A",
-          probabilidad: predictionResult ? predictionResult.probabilidad : "N/A",
+          probabilidad: predictionResult
+            ? predictionResult.probabilidad
+            : "N/A",
         };
       });
 
@@ -135,26 +138,24 @@ function Prediction() {
       model: model,
     };
 
-
-
     try {
       const apiUrl = process.env.REACT_APP_API_KEY;
-       const response = await fetch(`${apiUrl}/predict`, {
-         method: "POST",
-         headers: {
+      const response = await fetch(`${apiUrl}/predict`, {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-    // try {
-    //   const response = await fetch("http://localhost:5000/predict", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+      // try {
+      //   const response = await fetch("http://localhost:5000/predict", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(data),
+      //   });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -182,7 +183,6 @@ function Prediction() {
   };
 
   return (
-
     <div
       id="prediction-section"
       style={{ backgroundImage: `url(${prediction_background})` }}
@@ -319,7 +319,6 @@ function Prediction() {
                 )}
               </>
             )}
-
           </div>
         </div>
       </div>
@@ -328,8 +327,6 @@ function Prediction() {
         place="right"
         content="Click to select Best Model"
       />
-
-
     </div>
   );
 }
